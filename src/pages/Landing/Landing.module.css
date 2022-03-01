@@ -1,0 +1,44 @@
+.main {
+  background-image: url("/src/images/stars.png");
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title {
+  text-align: center;
+  align-items: center;
+  margin-top: 150px;
+  color: #fe3b1f;
+  font-weight: bold;
+  font-size: 96px;
+}
+
+.button {
+  margin-top: 50px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  background-color: #fe3b1f;
+  color: #f1f1f1;
+  padding: 23px 50px;
+  text-align: center;
+  border: 0px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+.link {
+  color: #f1f1f1;
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-top: 40px;
+}
+
+.img {
+  margin-right: 200px;
+  background-image: url("/src/images/rocketman.png");
+  width: 390px;
+  height: 410px;
+}
