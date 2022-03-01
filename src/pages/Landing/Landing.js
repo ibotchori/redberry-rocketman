@@ -8,7 +8,7 @@ const Landing = () => {
       <a href="/personalInformation" className={styles.link}>
         Submitted Applications
       </a>
-      <div className={styles.img}></div>
+      <img src="/images/rocketman.png" alt="rocket" className={styles.img} />
     </div>
   );
 };
