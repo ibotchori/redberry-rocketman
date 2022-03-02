@@ -19,7 +19,7 @@
 .title {
   text-align: center;
   align-items: center;
-  margin-top: 150px;
+  margin-top: 80px;
   color: #fe3b1f;
   font-weight: bold;
   font-size: 64px;
@@ -31,21 +31,26 @@
   font-size: 24px;
   text-align: left;
   padding-left: 70px;
-  max-width: 600px;
+  max-width: 800px;
   line-height: 200%;
+  padding-right: 50px;
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 7%;
+  padding-left: 100px;
 }
-.input {
-  width: 50%;
-  padding: 20px 20px;
-  margin: 8px 0;
+
+.question {
+  padding-bottom: 5px;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: url(/public/images/calendar.png);
+  background-repeat: no-repeat;
+}
+
+.dateInput {
+  width: 60%;
+  padding: 10px 20px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;

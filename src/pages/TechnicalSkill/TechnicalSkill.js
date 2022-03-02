@@ -7,13 +7,14 @@ const TechnicalSkill = () => {
         <h1 className={styles.title}>Tell us about your skills</h1>
         <div>
           <form className={styles.form} action="/action_page.php">
-            <select name="country">
+            <select className={styles.select} name="country">
               <option value="australia">Australia</option>
               <option value="canada">Canada</option>
               <option value="usa">USA</option>
             </select>
 
             <input
+              className={styles.input}
               type="number"
               id="number"
               name="epxYear"

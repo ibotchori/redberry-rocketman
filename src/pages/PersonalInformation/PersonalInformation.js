@@ -10,19 +10,28 @@ const PersonalInformation = () => {
         <div>
           <form className={styles.form} action="/action_page.php">
             <input
+              className={styles.input}
               type="text"
               id="fname"
               name="firstName"
               placeholder="First Name"
             />
             <input
+              className={styles.input}
               type="email"
               id="lname"
               name="lstName"
               placeholder="Last Name"
             />
-            <input type="text" id="email" name="email" placeholder="E mail" />
             <input
+              className={styles.input}
+              type="text"
+              id="email"
+              name="email"
+              placeholder="E mail"
+            />
+            <input
+              className={styles.input}
               type="number"
               id="number"
               name="phone"

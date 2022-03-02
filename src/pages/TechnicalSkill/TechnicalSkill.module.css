@@ -19,7 +19,7 @@
 .title {
   text-align: center;
   align-items: center;
-  margin-top: 150px;
+  margin-top: 110px;
   color: #fe3b1f;
   font-weight: bold;
   font-size: 64px;
@@ -42,8 +42,9 @@
   align-items: center;
   padding-top: 7%;
 }
-input,
-select {
+.input,
+.select {
+  margin-bottom: 10px;
   width: 50%;
   padding: 15px 20px;
   display: inline-block;
@@ -59,7 +60,6 @@ select {
   justify-content: flex-end;
 }
 .button {
-  margin-top: 10px;
   font-size: 14px;
   letter-spacing: 2px;
   background-color: #fe3b1f;
