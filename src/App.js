@@ -3,6 +3,7 @@ import Landing from "./pages/Landing/Landing";
 import PersonalInformation from "./pages/PersonalInformation/PersonalInformation";
 import RedberrianInsights from "./pages/RedberrianInsights/RedberrianInsights";
 import Submit from "./pages/Submit/Submit";
+import SubmittedItem from "./pages/SubmittedItem/SubmittedItem";
 import TechnicalSkill from "./pages/TechnicalSkill/TechnicalSkill";
 import Thanks from "./pages/Thanks/Thanks";
 
@@ -16,6 +17,7 @@ function App() {
       <RedberrianInsights />
       <Submit />
       <Thanks />
+      <SubmittedItem />
     </div>
   );
 }
