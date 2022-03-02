@@ -1,6 +1,7 @@
 import Covid from "./pages/Covid/Covid";
 import Landing from "./pages/Landing/Landing";
 import PersonalInformation from "./pages/PersonalInformation/PersonalInformation";
+import RedberrianInsights from "./pages/RedberrianInsights/RedberrianInsights";
 import TechnicalSkill from "./pages/TechnicalSkill/TechnicalSkill";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <PersonalInformation />
       <TechnicalSkill />
       <Covid />
+      <RedberrianInsights />
     </div>
   );
 }
