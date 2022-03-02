@@ -4,6 +4,7 @@ import PersonalInformation from "./pages/PersonalInformation/PersonalInformation
 import RedberrianInsights from "./pages/RedberrianInsights/RedberrianInsights";
 import Submit from "./pages/Submit/Submit";
 import TechnicalSkill from "./pages/TechnicalSkill/TechnicalSkill";
+import Thanks from "./pages/Thanks/Thanks";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Covid />
       <RedberrianInsights />
       <Submit />
+      <Thanks />
     </div>
   );
 }
