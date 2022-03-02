@@ -2,6 +2,7 @@ import Covid from "./pages/Covid/Covid";
 import Landing from "./pages/Landing/Landing";
 import PersonalInformation from "./pages/PersonalInformation/PersonalInformation";
 import RedberrianInsights from "./pages/RedberrianInsights/RedberrianInsights";
+import Submit from "./pages/Submit/Submit";
 import TechnicalSkill from "./pages/TechnicalSkill/TechnicalSkill";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <TechnicalSkill />
       <Covid />
       <RedberrianInsights />
+      <Submit />
     </div>
   );
 }
