@@ -1,0 +1,32 @@
+.main {
+  position: absolute;
+  bottom: 5%;
+  left: 25%;
+  display: flex;
+  justify-content: space-between;
+  width: 220px;
+  max-width: 100%;
+  transform: translate(-50%);
+}
+
+.inactive {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fe3b1f;
+  cursor: pointer;
+  opacity: 0.3;
+}
+
+.active {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fe3b1f;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.arrow {
+  cursor: pointer;
+}
