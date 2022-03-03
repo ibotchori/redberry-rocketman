@@ -7,6 +7,7 @@ import Submit from "./pages/Submit/Submit";
 import SubmittedItem from "./pages/SubmittedItem/SubmittedItem";
 import TechnicalSkill from "./pages/TechnicalSkill/TechnicalSkill";
 import Thanks from "./pages/Thanks/Thanks";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import {
   BrowserRouter as Router,
   Routes,
@@ -29,6 +30,7 @@ function App() {
         <Route path="/submit" element={<Submit />} />
         <Route path="/submitted-item" element={<SubmittedItem />} />
         <Route path="/thanks" element={<Thanks />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
       {location.pathname === "/personalInfo" ||
       location.pathname === "/skills" ||
