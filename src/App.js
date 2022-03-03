@@ -7,19 +7,29 @@ import Submit from "./pages/Submit/Submit";
 import SubmittedItem from "./pages/SubmittedItem/SubmittedItem";
 import TechnicalSkill from "./pages/TechnicalSkill/TechnicalSkill";
 import Thanks from "./pages/Thanks/Thanks";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <Landing />
-      <PersonalInformation />
-      <TechnicalSkill />
-      <Covid />
-      <RedberrianInsights />
-      <Submit />
-      <Thanks />
-      <SubmittedItem />
-      <Pagination />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/covid" element={<Covid />} />
+          <Route path="/personalInfo" element={<PersonalInformation />} />
+          <Route path="/skills" element={<TechnicalSkill />} />
+          <Route path="/redberrian" element={<RedberrianInsights />} />
+          <Route path="/submit" element={<Submit />} />
+          <Route path="/submitted-item" element={<SubmittedItem />} />
+          <Route path="/thanks" element={<Thanks />} />
+        </Routes>
+        <Pagination />
+      </Router>
     </div>
   );
 }

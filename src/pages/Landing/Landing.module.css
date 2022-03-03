@@ -20,7 +20,7 @@
 
 .button {
   margin-top: 50px;
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: 2px;
   background-color: #fe3b1f;
   color: #f1f1f1;
@@ -29,12 +29,14 @@
   border: 0px;
   border-radius: 50px;
   cursor: pointer;
+  text-decoration: none;
 }
 .link {
   color: #f1f1f1;
   font-size: 18px;
   letter-spacing: 2px;
   margin-top: 40px;
+  z-index: 999;
 }
 .img {
   position: relative;

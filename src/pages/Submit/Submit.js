@@ -1,12 +1,15 @@
 import styles from "./Submit.module.css";
+import { Link } from "react-router-dom";
 
 const Submit = () => {
   return (
     <div className={styles.main}>
-      <button className={styles.button}>Submit</button>
-      <a href="/personalInformation" className={styles.link}>
+      <Link to="/thanks" className={styles.button}>
+        Submit
+      </Link>
+      <Link to="/redberrian" className={styles.link}>
         &#8592; Go back
-      </a>
+      </Link>
     </div>
   );
 };

@@ -19,6 +19,7 @@
   border: 0px;
   border-radius: 50px;
   cursor: pointer;
+  text-decoration: none;
 }
 .link {
   color: #f1f1f1;

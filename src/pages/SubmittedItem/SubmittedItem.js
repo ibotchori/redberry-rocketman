@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./SubmittedItem.module.css";
+import { Link } from "react-router-dom";
 
 const SubmittedItem = () => {
   const [toggle, setToggle] = useState(false);
@@ -8,6 +9,9 @@ const SubmittedItem = () => {
     <div className={styles.main}>
       <div className={styles.title}>
         <h1>Submitted Applications</h1>
+        <Link to="/" className={styles.link}>
+          &#8592; Go back
+        </Link>
       </div>
 
       <div className={styles.button}>

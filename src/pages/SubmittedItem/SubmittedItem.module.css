@@ -11,8 +11,15 @@
   padding-top: 20px;
   width: 60%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   color: #f1f1f1;
+}
+
+.link {
+  color: #f1f1f1;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-top: 45px;
 }
 
 .button {
