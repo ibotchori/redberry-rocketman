@@ -3,7 +3,7 @@ import styles from "./TechnicalSkill.module.css";
 import axios from "axios";
 
 const TechnicalSkill = () => {
-  const [expYear, setExpYear] = useState(null);
+  const [expYear, setExpYear] = useState("");
   const [selectedSkill, setSelectedSkill] = useState("");
   const [allExperiences, setAllExperiences] = useState([]);
   // Get skills from API
@@ -34,8 +34,14 @@ const TechnicalSkill = () => {
         oneWorkingExperience,
       ]);
     }
+
+    // clear inputs
     setSelectedSkill("");
     setExpYear("");
+  };
+
+  const removeWorkingExperience = (itemId) => {
+    setAllExperiences(allExperiences.filter(({ id }) => id !== itemId));
   };
 
   return (
@@ -79,11 +85,12 @@ const TechnicalSkill = () => {
 
             <div className={styles.skills}>
               {allExperiences.length !== 0 ? (
-                allExperiences?.map((item) => (
+                allExperiences.map((item) => (
                   <div className={styles.skill}>
                     <p className={styles.pLanguage}>{item.title}</p>
                     <p>Years of Experience: {item.experience}</p>
                     <img
+                      onClick={() => removeWorkingExperience(item.id)}
                       className={styles.icon}
                       src="/images/delete.jpg"
                       alt="delete"
