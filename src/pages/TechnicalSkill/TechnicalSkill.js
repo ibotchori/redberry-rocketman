@@ -1,13 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./TechnicalSkill.module.css";
 import axios from "axios";
+import { UserContext } from "../../context/userContext";
 
 const TechnicalSkill = () => {
+  // Global state
+  const [userInfo, setUserInfo] = useContext(UserContext);
+
+  // Local state
   const [expYear, setExpYear] = useState("");
   const [selectedSkill, setSelectedSkill] = useState("");
   const [allExperiences, setAllExperiences] = useState([]);
+
   // Get skills from API
-  let [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState([]);
   useEffect(() => {
     async function getResults() {
       const results = await axios(
@@ -29,10 +35,16 @@ const TechnicalSkill = () => {
       title: selectedSkill,
     };
     if (expYear !== "" && selectedSkill !== "") {
+      // Save working experience to Local state
       setAllExperiences((currentArray) => [
         ...currentArray,
         oneWorkingExperience,
       ]);
+      // Save working experience to Global state
+      setUserInfo({
+        ...userInfo,
+        skills: [...userInfo.skills, oneWorkingExperience],
+      });
     }
 
     // clear inputs
@@ -41,7 +53,13 @@ const TechnicalSkill = () => {
   };
 
   const removeWorkingExperience = (itemId) => {
+    // Remove working experience from Local state
     setAllExperiences(allExperiences.filter(({ id }) => id !== itemId));
+    // Remove working experience from Global state
+    setUserInfo({
+      ...userInfo,
+      skills: userInfo.skills.filter((item) => item.id !== itemId),
+    });
   };
 
   return (
@@ -84,8 +102,8 @@ const TechnicalSkill = () => {
             </div>
 
             <div className={styles.skills}>
-              {allExperiences.length !== 0 ? (
-                allExperiences.map((item) => (
+              {userInfo.skills.length !== 0 ? (
+                userInfo.skills.map((item) => (
                   <div className={styles.skill}>
                     <p className={styles.pLanguage}>{item.title}</p>
                     <p>Years of Experience: {item.experience}</p>
