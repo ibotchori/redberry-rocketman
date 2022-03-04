@@ -1,6 +1,20 @@
+import { useEffect, useState } from "react";
 import styles from "./TechnicalSkill.module.css";
+import axios from "axios";
 
 const TechnicalSkill = () => {
+  // Get skills from API
+  let [skills, setSkills] = useState([]);
+  useEffect(() => {
+    async function getResults() {
+      const results = await axios(
+        "https://bootcamp-2022.devtest.ge/api/skills"
+      );
+      setSkills(results.data);
+    }
+    getResults();
+  }, []);
+
   return (
     <div className={styles.main}>
       <div className={styles.mainLeft}>
@@ -8,11 +22,14 @@ const TechnicalSkill = () => {
         <div>
           <form className={styles.form} action="/action_page.php">
             <select className={styles.select} name="country">
-              <option value="australia">Australia</option>
-              <option value="canada">Canada</option>
-              <option value="usa">USA</option>
+              {skills?.map((item) => {
+                return (
+                  <option key={item.id} value={item.title}>
+                    {item.title}
+                  </option>
+                );
+              })}
             </select>
-
             <input
               className={styles.input}
               type="number"
