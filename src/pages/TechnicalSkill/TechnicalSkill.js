@@ -3,6 +3,9 @@ import styles from "./TechnicalSkill.module.css";
 import axios from "axios";
 
 const TechnicalSkill = () => {
+  const [expYear, setExpYear] = useState(null);
+  const [selectedSkill, setSelectedSkill] = useState("");
+  const [allExperiences, setAllExperiences] = useState([]);
   // Get skills from API
   let [skills, setSkills] = useState([]);
   useEffect(() => {
@@ -15,13 +18,41 @@ const TechnicalSkill = () => {
     getResults();
   }, []);
 
+  const addWorkingExperience = () => {
+    // Extract Selected Skill ID
+    const selectedSkillID = skills?.find(
+      (item) => item.title === selectedSkill
+    )?.id;
+    let oneWorkingExperience = {
+      id: selectedSkillID,
+      experience: expYear,
+      title: selectedSkill,
+    };
+    if (expYear !== "" && selectedSkill !== "") {
+      setAllExperiences((currentArray) => [
+        ...currentArray,
+        oneWorkingExperience,
+      ]);
+    }
+    setSelectedSkill("");
+    setExpYear("");
+  };
+
   return (
     <div className={styles.main}>
       <div className={styles.mainLeft}>
         <h1 className={styles.title}>Tell us about your skills</h1>
         <div>
           <form className={styles.form} action="/action_page.php">
-            <select className={styles.select} name="country">
+            <select
+              onChange={(e) => setSelectedSkill(e.target.value)}
+              className={styles.select}
+              name="country"
+              value={selectedSkill}
+            >
+              <option defaultValue="" hidden>
+                Skills
+              </option>
               {skills?.map((item) => {
                 return (
                   <option key={item.id} value={item.title}>
@@ -31,72 +62,37 @@ const TechnicalSkill = () => {
               })}
             </select>
             <input
+              onChange={(e) => setExpYear(e.target.value)}
               className={styles.input}
               type="number"
               id="number"
+              value={expYear}
               name="epxYear"
               placeholder="Experience Duration in Years"
             />
 
             <div className={styles.buttonWrap}>
-              <div className={styles.button}>Add Programing Language</div>
+              <div onClick={addWorkingExperience} className={styles.button}>
+                Add Programing Language
+              </div>
             </div>
 
             <div className={styles.skills}>
-              <div className={styles.skill}>
-                <p className={styles.pLanguage}>PHP</p>
-                <p>Years of Experience: 3</p>
-                <img
-                  className={styles.icon}
-                  src="/images/delete.jpg"
-                  alt="delete"
-                />
-              </div>
-              <div className={styles.skill}>
-                <p className={styles.pLanguage}>Java</p>
-                <p>Years of Experience: 1</p>
-                <img
-                  className={styles.icon}
-                  src="/images/delete.jpg"
-                  alt="delete"
-                />
-              </div>
-              <div className={styles.skill}>
-                <p className={styles.pLanguage}>JavaScript</p>
-                <p>Years of Experience: 5</p>
-                <img
-                  className={styles.icon}
-                  src="/images/delete.jpg"
-                  alt="delete"
-                />
-              </div>
-              <div className={styles.skill}>
-                <p className={styles.pLanguage}>Python</p>
-                <p>Years of Experience: 3</p>
-                <img
-                  className={styles.icon}
-                  src="/images/delete.jpg"
-                  alt="delete"
-                />
-              </div>
-              <div className={styles.skill}>
-                <p className={styles.pLanguage}>Swift</p>
-                <p>Years of Experience: 3</p>
-                <img
-                  className={styles.icon}
-                  src="/images/delete.jpg"
-                  alt="delete"
-                />
-              </div>
-              <div className={styles.skill}>
-                <p className={styles.pLanguage}>Node.js</p>
-                <p>Years of Experience: 3</p>
-                <img
-                  className={styles.icon}
-                  src="/images/delete.jpg"
-                  alt="delete"
-                />
-              </div>
+              {allExperiences.length !== 0 ? (
+                allExperiences?.map((item) => (
+                  <div className={styles.skill}>
+                    <p className={styles.pLanguage}>{item.title}</p>
+                    <p>Years of Experience: {item.experience}</p>
+                    <img
+                      className={styles.icon}
+                      src="/images/delete.jpg"
+                      alt="delete"
+                    />
+                  </div>
+                ))
+              ) : (
+                <p>No experience added.</p>
+              )}
             </div>
           </form>
         </div>
