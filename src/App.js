@@ -37,9 +37,7 @@ function App() {
       location.pathname === "/covid" ||
       location.pathname === "/redberrian" ? (
         <Pagination />
-      ) : (
-        <></>
-      )}
+      ) : null}
     </div>
   );
 }
