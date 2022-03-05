@@ -18,7 +18,9 @@ const PersonalInformation = () => {
                 name="firstName"
                 placeholder="First Name"
               />
-              <ErrorMessage />
+              <ErrorMessage
+                text={"* First name should include 2 or more characters"}
+              />
             </div>
             <div>
               <input
@@ -28,7 +30,9 @@ const PersonalInformation = () => {
                 name="lstName"
                 placeholder="Last Name"
               />
-              <ErrorMessage />
+              <ErrorMessage
+                text={"* Last name should include 2 or more characters"}
+              />
             </div>
             <div>
               <input
@@ -38,7 +42,7 @@ const PersonalInformation = () => {
                 name="email"
                 placeholder="E mail"
               />
-              <ErrorMessage />
+              <ErrorMessage text={"* Email is required"} />
             </div>
             <div>
               <input
@@ -48,7 +52,7 @@ const PersonalInformation = () => {
                 name="phone"
                 placeholder="+995 5__ __ __ __"
               />
-              <ErrorMessage />
+              <ErrorMessage text={"* Phone is required"} />
             </div>
           </form>
         </div>

@@ -87,7 +87,7 @@ const TechnicalSkill = () => {
                   );
                 })}
               </select>
-              <ErrorMessage />
+              <ErrorMessage text={"* Choose skill"} />
               <input
                 onChange={(e) => setExpYear(e.target.value)}
                 className={styles.input}
@@ -97,7 +97,7 @@ const TechnicalSkill = () => {
                 name="epxYear"
                 placeholder="Experience Duration in Years"
               />
-              <ErrorMessage />
+              <ErrorMessage text={"* Enter duration year"} />
 
               <div className={styles.buttonWrap}>
                 <div onClick={addWorkingExperience} className={styles.button}>

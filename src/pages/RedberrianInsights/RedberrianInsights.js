@@ -18,7 +18,7 @@ const RedberrianInsights = () => {
               <input type="radio" id="no" name="covid" defaultValue="CSS" />
               &nbsp; <label htmlFor="no">No</label>
             </div>
-            <ErrorMessage />
+            <ErrorMessage text={"* Choose one option"} />
 
             <div>
               <p className={styles.textAreaTitle}>
@@ -33,7 +33,9 @@ const RedberrianInsights = () => {
                 placeholder="I would..."
               ></textarea>
             </div>
-            <ErrorMessage />
+            <ErrorMessage
+              text={"* Text should include 10 or more characters"}
+            />
             <div>
               <p className={styles.textAreaTitle}>Tell us something special</p>
               <textarea
@@ -45,7 +47,9 @@ const RedberrianInsights = () => {
                 placeholder="I..."
               ></textarea>
             </div>
-            <ErrorMessage />
+            <ErrorMessage
+              text={"* Text should include 10 or more characters"}
+            />
           </form>
         </div>
       </div>
