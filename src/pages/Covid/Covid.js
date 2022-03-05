@@ -1,7 +1,18 @@
+import { useState } from "react";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import styles from "./Covid.module.css";
 
 const Covid = () => {
+  const [covidContact, setCovidContact] = useState("");
+  const [covidVaccine, setCovidVAccine] = useState("");
+
+  const covidHandleChange = (event) => {
+    setCovidContact(event.target.value);
+  };
+  const vaccineHandleChange = (event) => {
+    setCovidVAccine(event.target.value);
+  };
+
   return (
     <div className={styles.main}>
       <div className={styles.mainLeft}>
@@ -31,48 +42,105 @@ const Covid = () => {
             <div className={styles.question}>
               <p>Did you contact covid 19? :(</p>
               &nbsp;{" "}
-              <input type="radio" id="yes" name="covid" defaultValue="HTML" />
+              <input
+                onChange={covidHandleChange}
+                type="radio"
+                id="yes"
+                name="covid"
+                value="yes"
+              />
               &nbsp; <label htmlFor="yes">Yes</label>
               <br />
               &nbsp;{" "}
-              <input type="radio" id="no" name="covid" defaultValue="CSS" />
+              <input
+                onChange={covidHandleChange}
+                type="radio"
+                id="no"
+                name="covid"
+                value="no"
+              />
               &nbsp; <label htmlFor="no">No</label>
             </div>
             <ErrorMessage text={"* Choose one option"} />
-            <div className={styles.question}>
-              <p>When?</p>
-              &nbsp;{" "}
-              <input
-                className={styles.dateInput}
-                type="date"
-                id="date"
-                name="covidDate"
-                defaultValue="HTML"
-              />
-            </div>
+
+            {covidContact === "yes" ? (
+              <div className={styles.question}>
+                <p>When?</p>
+                &nbsp;{" "}
+                <input
+                  className={styles.dateInput}
+                  type="date"
+                  id="date"
+                  name="covidDate"
+                  defaultValue="HTML"
+                />
+              </div>
+            ) : (
+              <div className={styles.hidden}>
+                <p>When?</p>
+                &nbsp;{" "}
+                <input
+                  className={styles.dateInput}
+                  type="date"
+                  id="date"
+                  name="covidDate"
+                  defaultValue="HTML"
+                />
+              </div>
+            )}
             <ErrorMessage text={"* Please select date"} />
             <div className={styles.question}>
               <p>Have you been vaccinated?</p>
               &nbsp;{" "}
-              <input type="radio" id="yes" name="covid" defaultValue="HTML" />
+              <input
+                onChange={vaccineHandleChange}
+                type="radio"
+                id="yes"
+                name="vaccine"
+                value="yes"
+              />
               &nbsp; <label htmlFor="yes">Yes</label>
               <br />
               &nbsp;{" "}
-              <input type="radio" id="no" name="covid" defaultValue="CSS" />
+              <input
+                onChange={vaccineHandleChange}
+                type="radio"
+                id="no"
+                name="vaccine"
+                value="no"
+              />
               &nbsp; <label htmlFor="no">No</label>
             </div>
             <ErrorMessage text={"* Choose one option"} />
-            <div className={styles.question}>
-              <p>When did you get your last covid vaccine?</p>
-              &nbsp;{" "}
-              <input
-                className={styles.dateInput}
-                type="date"
-                id="date"
-                name="covidDate"
-                defaultValue="HTML"
-              />
-            </div>
+            {
+              //Check if message failed
+              covidVaccine === "yes" ? (
+                <div className={styles.question}>
+                  <p>When did you get your last covid vaccine?</p>
+                  &nbsp;{" "}
+                  <input
+                    className={styles.dateInput}
+                    type="date"
+                    id="date"
+                    name="covidDate"
+                    defaultValue="HTML"
+                  />
+                </div>
+              ) : (
+                <div className={styles.hidden}>
+                  <p>When did you get your last covid vaccine?</p>
+                  &nbsp;{" "}
+                  <input
+                    className={styles.dateInput}
+                    type="date"
+                    id="date"
+                    name="covidDate"
+                    defaultValue="HTML"
+                  />
+                </div>
+              )
+            }
+
             <ErrorMessage text={"* Please select date"} />
           </form>
         </div>

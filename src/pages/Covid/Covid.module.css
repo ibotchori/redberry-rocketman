@@ -44,6 +44,10 @@
 .question {
   padding-bottom: 5px;
 }
+.hidden {
+  visibility: hidden;
+  padding-bottom: 5px;
+}
 input[type="date"]::-webkit-calendar-picker-indicator {
   background: url(/public/images/calendar.png);
   background-repeat: no-repeat;
