@@ -104,25 +104,25 @@ const TechnicalSkill = () => {
                   Add Programing Language
                 </div>
               </div>
-            </div>
 
-            <div className={styles.skills}>
-              {userInfo.skills.length !== 0 ? (
-                userInfo.skills.map((item) => (
-                  <div className={styles.skill}>
-                    <p className={styles.pLanguage}>{item.title}</p>
-                    <p>Years of Experience: {item.experience}</p>
-                    <img
-                      onClick={() => removeWorkingExperience(item.id)}
-                      className={styles.icon}
-                      src="/images/delete.jpg"
-                      alt="delete"
-                    />
-                  </div>
-                ))
-              ) : (
-                <p>No experience added.</p>
-              )}
+              <div className={styles.skills}>
+                {userInfo.skills.length !== 0 ? (
+                  userInfo.skills.map((item) => (
+                    <div className={styles.skill}>
+                      <p className={styles.pLanguage}>{item.title}</p>
+                      <p>Years of Experience: {item.experience}</p>
+                      <img
+                        onClick={() => removeWorkingExperience(item.id)}
+                        className={styles.icon}
+                        src="/images/delete.jpg"
+                        alt="delete"
+                      />
+                    </div>
+                  ))
+                ) : (
+                  <p>No experience added.</p>
+                )}
+              </div>
             </div>
           </form>
         </div>
