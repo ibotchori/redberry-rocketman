@@ -1,3 +1,4 @@
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import styles from "./Covid.module.css";
 
 const Covid = () => {
@@ -26,6 +27,7 @@ const Covid = () => {
               />
               &nbsp; <label htmlFor="hybrid">Hybrid</label>
             </div>
+            <ErrorMessage />
             <div className={styles.question}>
               <p>Did you contact covid 19? :(</p>
               &nbsp;{" "}
@@ -36,6 +38,7 @@ const Covid = () => {
               <input type="radio" id="no" name="covid" defaultValue="CSS" />
               &nbsp; <label htmlFor="no">No</label>
             </div>
+            <ErrorMessage />
             <div className={styles.question}>
               <p>When?</p>
               &nbsp;{" "}
@@ -47,6 +50,7 @@ const Covid = () => {
                 defaultValue="HTML"
               />
             </div>
+            <ErrorMessage />
             <div className={styles.question}>
               <p>Have you been vaccinated?</p>
               &nbsp;{" "}
@@ -57,6 +61,7 @@ const Covid = () => {
               <input type="radio" id="no" name="covid" defaultValue="CSS" />
               &nbsp; <label htmlFor="no">No</label>
             </div>
+            <ErrorMessage />
             <div className={styles.question}>
               <p>When did you get your last covid vaccine?</p>
               &nbsp;{" "}
@@ -68,6 +73,7 @@ const Covid = () => {
                 defaultValue="HTML"
               />
             </div>
+            <ErrorMessage />
           </form>
         </div>
       </div>

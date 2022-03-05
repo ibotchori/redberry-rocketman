@@ -46,7 +46,9 @@
 .input,
 .select {
   margin-bottom: 10px;
-  width: 50%;
+  margin-top: 5px;
+  width: 85%;
+  margin-right: 350px;
   padding: 15px 20px;
   display: inline-block;
   border: 1px solid #ccc;
@@ -58,6 +60,7 @@
 .buttonWrap {
   display: flex;
   width: 50%;
+  margin-left: 200px;
   justify-content: flex-end;
 }
 .button {

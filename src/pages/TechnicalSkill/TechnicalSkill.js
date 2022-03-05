@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import styles from "./TechnicalSkill.module.css";
 import axios from "axios";
 import { UserContext } from "../../context/userContext";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 const TechnicalSkill = () => {
   // Global state
@@ -68,36 +69,40 @@ const TechnicalSkill = () => {
         <h1 className={styles.title}>Tell us about your skills</h1>
         <div>
           <form className={styles.form} action="/action_page.php">
-            <select
-              onChange={(e) => setSelectedSkill(e.target.value)}
-              className={styles.select}
-              name="country"
-              value={selectedSkill}
-            >
-              <option defaultValue="" hidden>
-                Skills
-              </option>
-              {skills?.map((item) => {
-                return (
-                  <option key={item.id} value={item.title}>
-                    {item.title}
-                  </option>
-                );
-              })}
-            </select>
-            <input
-              onChange={(e) => setExpYear(e.target.value)}
-              className={styles.input}
-              type="number"
-              id="number"
-              value={expYear}
-              name="epxYear"
-              placeholder="Experience Duration in Years"
-            />
+            <div>
+              <select
+                onChange={(e) => setSelectedSkill(e.target.value)}
+                className={styles.select}
+                name="country"
+                value={selectedSkill}
+              >
+                <option defaultValue="" hidden>
+                  Skills
+                </option>
+                {skills?.map((item) => {
+                  return (
+                    <option key={item.id} value={item.title}>
+                      {item.title}
+                    </option>
+                  );
+                })}
+              </select>
+              <ErrorMessage />
+              <input
+                onChange={(e) => setExpYear(e.target.value)}
+                className={styles.input}
+                type="number"
+                id="number"
+                value={expYear}
+                name="epxYear"
+                placeholder="Experience Duration in Years"
+              />
+              <ErrorMessage />
 
-            <div className={styles.buttonWrap}>
-              <div onClick={addWorkingExperience} className={styles.button}>
-                Add Programing Language
+              <div className={styles.buttonWrap}>
+                <div onClick={addWorkingExperience} className={styles.button}>
+                  Add Programing Language
+                </div>
               </div>
             </div>
 

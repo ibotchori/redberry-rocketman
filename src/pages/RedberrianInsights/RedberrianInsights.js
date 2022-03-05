@@ -1,3 +1,4 @@
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import styles from "./Redberrian.module.css";
 
 const RedberrianInsights = () => {
@@ -17,6 +18,7 @@ const RedberrianInsights = () => {
               <input type="radio" id="no" name="covid" defaultValue="CSS" />
               &nbsp; <label htmlFor="no">No</label>
             </div>
+            <ErrorMessage />
 
             <div>
               <p className={styles.textAreaTitle}>
@@ -31,6 +33,7 @@ const RedberrianInsights = () => {
                 placeholder="I would..."
               ></textarea>
             </div>
+            <ErrorMessage />
             <div>
               <p className={styles.textAreaTitle}>Tell us something special</p>
               <textarea
@@ -42,6 +45,7 @@ const RedberrianInsights = () => {
                 placeholder="I..."
               ></textarea>
             </div>
+            <ErrorMessage />
           </form>
         </div>
       </div>

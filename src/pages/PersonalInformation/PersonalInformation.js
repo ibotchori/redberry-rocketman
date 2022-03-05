@@ -1,3 +1,4 @@
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import styles from "./PersonalInformation.module.css";
 
 const PersonalInformation = () => {
@@ -9,34 +10,46 @@ const PersonalInformation = () => {
         </h1>
         <div>
           <form className={styles.form} action="/action_page.php">
-            <input
-              className={styles.input}
-              type="text"
-              id="fname"
-              name="firstName"
-              placeholder="First Name"
-            />
-            <input
-              className={styles.input}
-              type="email"
-              id="lname"
-              name="lstName"
-              placeholder="Last Name"
-            />
-            <input
-              className={styles.input}
-              type="text"
-              id="email"
-              name="email"
-              placeholder="E mail"
-            />
-            <input
-              className={styles.input}
-              type="number"
-              id="number"
-              name="phone"
-              placeholder="+995 5__ __ __ __"
-            />
+            <div>
+              <input
+                className={styles.input}
+                type="text"
+                id="fname"
+                name="firstName"
+                placeholder="First Name"
+              />
+              <ErrorMessage />
+            </div>
+            <div>
+              <input
+                className={styles.input}
+                type="email"
+                id="lname"
+                name="lstName"
+                placeholder="Last Name"
+              />
+              <ErrorMessage />
+            </div>
+            <div>
+              <input
+                className={styles.input}
+                type="text"
+                id="email"
+                name="email"
+                placeholder="E mail"
+              />
+              <ErrorMessage />
+            </div>
+            <div>
+              <input
+                className={styles.input}
+                type="number"
+                id="number"
+                name="phone"
+                placeholder="+995 5__ __ __ __"
+              />
+              <ErrorMessage />
+            </div>
           </form>
         </div>
       </div>
