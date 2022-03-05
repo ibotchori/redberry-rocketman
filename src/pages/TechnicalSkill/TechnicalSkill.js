@@ -13,6 +13,9 @@ const TechnicalSkill = () => {
   const [selectedSkill, setSelectedSkill] = useState("");
   const [allExperiences, setAllExperiences] = useState([]);
 
+  const [skillErrorMessage, setSkillErrorMessage] = useState("");
+  const [expErrorMessage, setExpErrorMessage] = useState("");
+
   // Get skills from API
   const [skills, setSkills] = useState([]);
   useEffect(() => {
@@ -25,6 +28,16 @@ const TechnicalSkill = () => {
     getResults();
   }, []);
 
+  // Clear error messages if input is not empty
+  useEffect(() => {
+    if (selectedSkill !== "") {
+      setSkillErrorMessage("");
+    }
+    if (expYear !== "") {
+      setExpErrorMessage("");
+    }
+  }, [selectedSkill, expYear]);
+
   const addWorkingExperience = () => {
     // Extract Selected Skill ID
     const selectedSkillID = skills?.find(
@@ -35,22 +48,46 @@ const TechnicalSkill = () => {
       experience: expYear,
       title: selectedSkill,
     };
-    if (expYear !== "" && selectedSkill !== "") {
-      // Save working experience to Local state
-      setAllExperiences((currentArray) => [
-        ...currentArray,
-        oneWorkingExperience,
-      ]);
-      // Save working experience to Global state
+
+    // Show error messages if input is empty
+    if (selectedSkill == "") {
+      setSkillErrorMessage("Select programing language");
+      return;
+    }
+    if (expYear == "") {
+      setExpErrorMessage("Enter duration year");
+      return;
+    }
+
+    // Show error message if programming language is already added
+    const existSkill = userInfo?.skills.some(
+      (item) => item.title === selectedSkill
+    );
+    if (existSkill) {
+      setSkillErrorMessage(
+        "This language is already added, choose different language"
+      );
+      return;
+    }
+
+    // Save working experience to Local state
+    setAllExperiences((currentArray) => [
+      ...currentArray,
+      oneWorkingExperience,
+    ]);
+    // Save working experience to Global state
+    if (selectedSkill !== "" && expYear !== "") {
       setUserInfo({
         ...userInfo,
         skills: [...userInfo.skills, oneWorkingExperience],
       });
     }
 
-    // clear inputs
+    // clear inputs & error messages
     setSelectedSkill("");
     setExpYear("");
+    setSkillErrorMessage("");
+    setExpErrorMessage("");
   };
 
   const removeWorkingExperience = (itemId) => {
@@ -87,7 +124,11 @@ const TechnicalSkill = () => {
                   );
                 })}
               </select>
-              <ErrorMessage text={"* Choose skill"} />
+              {!skillErrorMessage ? (
+                <ErrorMessage style="hidden" />
+              ) : (
+                <ErrorMessage text={skillErrorMessage} />
+              )}
               <input
                 onChange={(e) => setExpYear(e.target.value)}
                 className={styles.input}
@@ -97,7 +138,11 @@ const TechnicalSkill = () => {
                 name="epxYear"
                 placeholder="Experience Duration in Years"
               />
-              <ErrorMessage text={"* Enter duration year"} />
+              {!expErrorMessage ? (
+                <ErrorMessage style="hidden" />
+              ) : (
+                <ErrorMessage />
+              )}
 
               <div className={styles.buttonWrap}>
                 <div onClick={addWorkingExperience} className={styles.button}>
