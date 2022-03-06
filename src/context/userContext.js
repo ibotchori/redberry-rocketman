@@ -17,6 +17,7 @@ export const UserProvider = (props) => {
     will_organize_devtalk: true,
     devtalk_topic: "",
     something_special: "",
+    showError: false,
   });
   return (
     <UserContext.Provider value={[userInfo, setUserInfo]}>

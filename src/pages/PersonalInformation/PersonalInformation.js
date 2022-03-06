@@ -1,7 +1,21 @@
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import styles from "./PersonalInformation.module.css";
+import React, { useContext, useState, useEffect } from "react";
+import { UserContext } from "../../context/userContext";
+import { regEmail } from "../../utils/regex";
 
 const PersonalInformation = () => {
+  // Global state
+  const [userInfo, setUserInfo] = useContext(UserContext);
+
+  useEffect(() => {
+    if (regEmail.test(userInfo?.email) === true) {
+      setUserInfo({ ...userInfo, showError: false });
+    }
+  }, [userInfo.email]);
+
+  console.log(regEmail.test(userInfo.email));
+
   return (
     <div className={styles.main}>
       <div className={styles.mainLeft}>
@@ -17,10 +31,21 @@ const PersonalInformation = () => {
                 id="fname"
                 name="firstName"
                 placeholder="First Name"
+                onChange={(e) =>
+                  setUserInfo({ ...userInfo, first_name: e.target.value })
+                }
+                value={userInfo.first_name}
               />
-              <ErrorMessage
-                text={"* First name should include 2 or more characters"}
-              />
+              {userInfo.showError && userInfo.first_name.length < 2 ? (
+                <ErrorMessage
+                  text={"* First name should include 2 or more characters"}
+                />
+              ) : (
+                <ErrorMessage
+                  text={"* First name should include 2 or more characters"}
+                  style="hidden"
+                />
+              )}
             </div>
             <div>
               <input
@@ -29,10 +54,21 @@ const PersonalInformation = () => {
                 id="lname"
                 name="lstName"
                 placeholder="Last Name"
+                onChange={(e) =>
+                  setUserInfo({ ...userInfo, last_name: e.target.value })
+                }
+                value={userInfo.last_name}
               />
-              <ErrorMessage
-                text={"* Last name should include 2 or more characters"}
-              />
+              {userInfo.showError && userInfo.last_name.length < 2 ? (
+                <ErrorMessage
+                  text={"* Last name should include 2 or more characters"}
+                />
+              ) : (
+                <ErrorMessage
+                  text={"* Last name should include 2 or more characters"}
+                  style="hidden"
+                />
+              )}
             </div>
             <div>
               <input
@@ -41,8 +77,17 @@ const PersonalInformation = () => {
                 id="email"
                 name="email"
                 placeholder="E mail"
+                onChange={(e) =>
+                  setUserInfo({ ...userInfo, email: e.target.value })
+                }
+                value={userInfo.email}
               />
-              <ErrorMessage text={"* Email is required"} />
+              {userInfo?.showError &&
+              regEmail.test(userInfo?.email) === false ? (
+                <ErrorMessage text={"* Email is required"} />
+              ) : (
+                <ErrorMessage text={"* Email is required"} style="hidden" />
+              )}
             </div>
             <div>
               <input
@@ -50,9 +95,20 @@ const PersonalInformation = () => {
                 type="number"
                 id="number"
                 name="phone"
-                placeholder="+995 5__ __ __ __"
+                placeholder="5__ __ __ __"
+                onChange={(e) =>
+                  setUserInfo({ ...userInfo, phone: e.target.value })
+                }
+                value={userInfo.phone}
               />
-              <ErrorMessage text={"* Phone is required"} />
+              {userInfo.showError && userInfo.phone.length < 9 ? (
+                <ErrorMessage text={"* Please enter a valid phone number"} />
+              ) : (
+                <ErrorMessage
+                  text={"* Please enter a valid phone number"}
+                  style="hidden"
+                />
+              )}
             </div>
           </form>
         </div>
