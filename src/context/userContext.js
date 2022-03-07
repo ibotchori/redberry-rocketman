@@ -18,6 +18,7 @@ export const UserProvider = (props) => {
     devtalk_topic: "",
     something_special: "",
     showError: false,
+    showCovidError: false,
   });
   return (
     <UserContext.Provider value={[userInfo, setUserInfo]}>

@@ -90,6 +90,11 @@ const TechnicalSkill = () => {
     setExpErrorMessage("");
   };
 
+  // Hide error message when deleting experience
+  useEffect(() => {
+    setUserInfo({ ...userInfo, showCovidError: false });
+  }, [userInfo.skills.length]);
+
   const removeWorkingExperience = (itemId) => {
     // Remove working experience from Local state
     setAllExperiences(allExperiences.filter(({ id }) => id !== itemId));
@@ -166,6 +171,14 @@ const TechnicalSkill = () => {
                   ))
                 ) : (
                   <p>No experience added.</p>
+                )}
+                {userInfo.showCovidError && userInfo.skills.length < 1 ? (
+                  <ErrorMessage text={"* Please add at least one experience"} />
+                ) : (
+                  <ErrorMessage
+                    text={"* Please add at least one experience"}
+                    style="hidden"
+                  />
                 )}
               </div>
             </div>

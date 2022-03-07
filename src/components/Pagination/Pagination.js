@@ -33,13 +33,24 @@ const Pagination = () => {
     }
   };
 
+  const covidButtonClick = () => {
+    if (location.pathname !== "/skills") {
+      navigate("/covid");
+    }
+    if (userInfo.skills.length < 1) {
+      setUserInfo({ ...userInfo, showCovidError: true });
+    } else {
+      navigate("/covid");
+    }
+  };
+
   return (
     <div className={styles.main}>
       <img className={styles.arrow} src="/images/right.png" />
 
       <Link to="/personalInfo" className={styles.active} />
       <span onClick={() => skillButtonClick()} className={styles.inactive} />
-      <Link to="/covid" className={styles.inactive} />
+      <span onClick={() => covidButtonClick()} className={styles.inactive} />
       <Link to="/redberrian" className={styles.inactive} />
       <Link to="/submit" className={styles.inactive} />
 
