@@ -1,17 +1,11 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import styles from "./Covid.module.css";
+import { UserContext } from "../../context/userContext";
 
 const Covid = () => {
-  const [covidContact, setCovidContact] = useState("");
-  const [covidVaccine, setCovidVAccine] = useState("");
-
-  const covidHandleChange = (event) => {
-    setCovidContact(event.target.value);
-  };
-  const vaccineHandleChange = (event) => {
-    setCovidVAccine(event.target.value);
-  };
+  // Global state
+  const [userInfo, setUserInfo] = useContext(UserContext);
 
   return (
     <div className={styles.main}>
@@ -22,48 +16,105 @@ const Covid = () => {
             <div className={styles.question}>
               <p>How would you prefer to work?</p>
               &nbsp;{" "}
-              <input type="radio" id="sairme" name="work" defaultValue="HTML" />
+              <input
+                type="radio"
+                id="sairme"
+                name="sairme"
+                checked={
+                  userInfo.work_preference === "From Sairme Office"
+                    ? true
+                    : false
+                }
+                value={"From Sairme Office"}
+                onChange={(e) =>
+                  setUserInfo({
+                    ...userInfo,
+                    work_preference: e.currentTarget.value,
+                  })
+                }
+              />
               &nbsp; <label htmlFor="sairme">From Sairme Office</label>
               <br />
               &nbsp;{" "}
-              <input type="radio" id="home" name="work" defaultValue="CSS" />
+              <input
+                type="radio"
+                id="sairme"
+                name="home"
+                checked={
+                  userInfo.work_preference === "From Home" ? true : false
+                }
+                value={"From Home"}
+                onChange={(e) =>
+                  setUserInfo({
+                    ...userInfo,
+                    work_preference: e.currentTarget.value,
+                  })
+                }
+              />
               &nbsp; <label htmlFor="home">From Home</label>
               <br />
               &nbsp;{" "}
               <input
                 type="radio"
-                id="hybrid"
-                name="work"
-                defaultValue="JavaScript"
+                id="sairme"
+                name="hybrid"
+                checked={userInfo.work_preference === "Hybrid" ? true : false}
+                value={"Hybrid"}
+                onChange={(e) =>
+                  setUserInfo({
+                    ...userInfo,
+                    work_preference: e.currentTarget.value,
+                  })
+                }
               />
               &nbsp; <label htmlFor="hybrid">Hybrid</label>
             </div>
-            <ErrorMessage text={"* Choose one option"} />
+            {userInfo.showCovidError && userInfo.work_preference === "" ? (
+              <ErrorMessage text={"* Choose one option"} />
+            ) : (
+              <ErrorMessage text={"* Choose one option"} style="hidden" />
+            )}
             <div className={styles.question}>
               <p>Did you contact covid 19? :(</p>
               &nbsp;{" "}
               <input
-                onChange={covidHandleChange}
                 type="radio"
                 id="yes"
-                name="covid"
-                value="yes"
+                name="covidContact"
+                checked={userInfo.had_covid === true ? true : false}
+                value={true}
+                onChange={(e) =>
+                  setUserInfo({
+                    ...userInfo,
+                    had_covid: JSON.parse(e.currentTarget.value),
+                  })
+                }
               />
               &nbsp; <label htmlFor="yes">Yes</label>
               <br />
               &nbsp;{" "}
               <input
-                onChange={covidHandleChange}
                 type="radio"
                 id="no"
-                name="covid"
-                value="no"
+                name="covidContact"
+                checked={userInfo.had_covid === false ? true : false}
+                value={false}
+                onChange={(e) =>
+                  setUserInfo({
+                    ...userInfo,
+                    had_covid: JSON.parse(e.currentTarget.value),
+                  })
+                }
               />
               &nbsp; <label htmlFor="no">No</label>
             </div>
-            <ErrorMessage text={"* Choose one option"} />
+            {/* {userInfo.showCovidError && userInfo.had_covid === "undefined" ? (
+              <ErrorMessage text={"* Choose one option"} />
+            ) : (
+              <ErrorMessage text={"* Choose one option"} style="hidden" />
+            )} */}
 
-            {covidContact === "yes" ? (
+            {userInfo.had_covid === true ? (
               <div className={styles.question}>
                 <p>When?</p>
                 &nbsp;{" "}
@@ -72,8 +123,19 @@ const Covid = () => {
                   type="date"
                   id="date"
                   name="covidDate"
-                  defaultValue="HTML"
+                  value={userInfo.had_covid_at}
+                  onChange={(e) =>
+                    setUserInfo({
+                      ...userInfo,
+                      had_covid_at: e.currentTarget.value,
+                    })
+                  }
                 />
+                {userInfo.showCovidError && userInfo.had_covid_at === "" ? (
+                  <ErrorMessage text={"* Please select date"} />
+                ) : (
+                  <ErrorMessage text={"* Please select date"} style="hidden" />
+                )}
               </div>
             ) : (
               <div className={styles.hidden}>
@@ -88,60 +150,82 @@ const Covid = () => {
                 />
               </div>
             )}
-            <ErrorMessage text={"* Please select date"} />
+
             <div className={styles.question}>
               <p>Have you been vaccinated?</p>
               &nbsp;{" "}
               <input
-                onChange={vaccineHandleChange}
                 type="radio"
                 id="yes"
-                name="vaccine"
-                value="yes"
+                name="vaccinated"
+                checked={userInfo.vaccinated === true ? true : false}
+                value={true}
+                onChange={(e) =>
+                  setUserInfo({
+                    ...userInfo,
+                    vaccinated: JSON.parse(e.currentTarget.value),
+                  })
+                }
               />
               &nbsp; <label htmlFor="yes">Yes</label>
               <br />
               &nbsp;{" "}
               <input
-                onChange={vaccineHandleChange}
                 type="radio"
                 id="no"
-                name="vaccine"
-                value="no"
+                name="vaccinated"
+                checked={userInfo.vaccinated === false ? true : false}
+                value={false}
+                onChange={(e) =>
+                  setUserInfo({
+                    ...userInfo,
+                    vaccinated: JSON.parse(e.currentTarget.value),
+                  })
+                }
               />
               &nbsp; <label htmlFor="no">No</label>
             </div>
-            <ErrorMessage text={"* Choose one option"} />
-            {
-              //Check if message failed
-              covidVaccine === "yes" ? (
-                <div className={styles.question}>
-                  <p>When did you get your last covid vaccine?</p>
-                  &nbsp;{" "}
-                  <input
-                    className={styles.dateInput}
-                    type="date"
-                    id="date"
-                    name="covidDate"
-                    defaultValue="HTML"
-                  />
-                </div>
-              ) : (
-                <div className={styles.hidden}>
-                  <p>When did you get your last covid vaccine?</p>
-                  &nbsp;{" "}
-                  <input
-                    className={styles.dateInput}
-                    type="date"
-                    id="date"
-                    name="covidDate"
-                    defaultValue="HTML"
-                  />
-                </div>
-              )
-            }
-
-            <ErrorMessage text={"* Please select date"} />
+            {/* {userInfo.showCovidError && userInfo.vaccinated === "undefined" ? (
+              <ErrorMessage text={"* Choose one option"} />
+            ) : (
+              <ErrorMessage text={"* Choose one option"} style="hidden" />
+            )} */}
+            {userInfo.vaccinated === true ? (
+              <div className={styles.question}>
+                <p>When did you get your last covid vaccine?</p>
+                &nbsp;{" "}
+                <input
+                  className={styles.dateInput}
+                  type="date"
+                  id="date"
+                  name="covidDate"
+                  value={userInfo.vaccinated_at}
+                  onChange={(e) =>
+                    setUserInfo({
+                      ...userInfo,
+                      vaccinated_at: e.currentTarget.value,
+                    })
+                  }
+                />
+                {userInfo.showCovidError && userInfo.vaccinated_at === "" ? (
+                  <ErrorMessage text={"* Please select date"} />
+                ) : (
+                  <ErrorMessage text={"* Please select date"} style="hidden" />
+                )}
+              </div>
+            ) : (
+              <div className={styles.hidden}>
+                <p>When did you get your last covid vaccine?</p>
+                &nbsp;{" "}
+                <input
+                  className={styles.dateInput}
+                  type="date"
+                  id="date"
+                  name="covidDate"
+                  defaultValue="HTML"
+                />
+              </div>
+            )}
           </form>
         </div>
       </div>

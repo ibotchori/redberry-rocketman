@@ -44,6 +44,21 @@ const Pagination = () => {
     }
   };
 
+  const redberrianButtonClick = () => {
+    if (location.pathname !== "/covid") {
+      navigate("/redberrian");
+    }
+    if (userInfo.work_preference === "") {
+      setUserInfo({ ...userInfo, showCovidError: true });
+    } else if (userInfo.had_covid === true && userInfo.had_covid_at === "") {
+      setUserInfo({ ...userInfo, showCovidError: true });
+    } else if (userInfo.vaccinated === true && userInfo.vaccinated_at === "") {
+      setUserInfo({ ...userInfo, showCovidError: true });
+    } else {
+      navigate("/redberrian");
+    }
+  };
+
   const submitButtonClick = () => {
     if (location.pathname !== "/redberrian") {
       navigate("/submit");
@@ -66,7 +81,10 @@ const Pagination = () => {
       <Link to="/personalInfo" className={styles.active} />
       <span onClick={() => skillButtonClick()} className={styles.inactive} />
       <span onClick={() => covidButtonClick()} className={styles.inactive} />
-      <Link to="/redberrian" className={styles.inactive} />
+      <span
+        onClick={() => redberrianButtonClick()}
+        className={styles.inactive}
+      />
       <span onClick={() => submitButtonClick()} className={styles.inactive} />
 
       <img className={styles.arrow} src="/images/left.png" />

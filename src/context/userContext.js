@@ -10,9 +10,9 @@ export const UserProvider = (props) => {
     phone: "",
     skills: [],
     work_preference: "",
-    had_covid: true,
+    had_covid: false,
     had_covid_at: "",
-    vaccinated: true,
+    vaccinated: false,
     vaccinated_at: "",
     will_organize_devtalk: "undefined",
     devtalk_topic: "",
@@ -20,6 +20,7 @@ export const UserProvider = (props) => {
     showError: false,
     showSkillError: false,
     showRedberrianError: false,
+    showCovidError: false,
   });
   return (
     <UserContext.Provider value={[userInfo, setUserInfo]}>
