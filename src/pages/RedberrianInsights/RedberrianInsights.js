@@ -1,7 +1,15 @@
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import styles from "./Redberrian.module.css";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../context/userContext";
 
 const RedberrianInsights = () => {
+  // Global state
+  const [userInfo, setUserInfo] = useContext(UserContext);
+
+  console.log(userInfo.will_organize_devtalk);
+  console.log(typeof userInfo.will_organize_devtalk);
+
   return (
     <div className={styles.main}>
       <div className={styles.mainLeft}>
@@ -11,14 +19,45 @@ const RedberrianInsights = () => {
             <div className={styles.question}>
               <p>Would you attend Devtalks and maybe also organize your own?</p>
               &nbsp;{" "}
-              <input type="radio" id="yes" name="covid" defaultValue="HTML" />
+              <input
+                type="radio"
+                id="yes"
+                name="covid"
+                value={true}
+                checked={userInfo.will_organize_devtalk === true ? true : false}
+                onChange={(e) =>
+                  setUserInfo({
+                    ...userInfo,
+                    will_organize_devtalk: JSON.parse(e.currentTarget.value),
+                  })
+                }
+              />
               &nbsp; <label htmlFor="yes">Yes</label>
               <br />
               &nbsp;{" "}
-              <input type="radio" id="no" name="covid" defaultValue="CSS" />
+              <input
+                type="radio"
+                id="no"
+                name="covid"
+                checked={
+                  userInfo.will_organize_devtalk === false ? true : false
+                }
+                value={false}
+                onChange={(e) =>
+                  setUserInfo({
+                    ...userInfo,
+                    will_organize_devtalk: JSON.parse(e.currentTarget.value),
+                  })
+                }
+              />
               &nbsp; <label htmlFor="no">No</label>
             </div>
-            <ErrorMessage text={"* Choose one option"} />
+            {userInfo.showRedberrianError &&
+            userInfo.will_organize_devtalk === "undefined" ? (
+              <ErrorMessage text={"* Choose one option"} />
+            ) : (
+              <ErrorMessage text={"* Choose one option"} style="hidden" />
+            )}
 
             <div>
               <p className={styles.textAreaTitle}>
@@ -31,11 +70,22 @@ const RedberrianInsights = () => {
                 rows="4"
                 cols="50"
                 placeholder="I would..."
+                onChange={(e) =>
+                  setUserInfo({ ...userInfo, devtalk_topic: e.target.value })
+                }
+                value={userInfo.devtalk_topic}
               ></textarea>
             </div>
-            <ErrorMessage
-              text={"* Text should include 10 or more characters"}
-            />
+            {userInfo.showRedberrianError &&
+            userInfo.devtalk_topic.length < 10 ? (
+              <ErrorMessage text={"* Please add at least one experience"} />
+            ) : (
+              <ErrorMessage
+                text={"* Please add at least one experience"}
+                style="hidden"
+              />
+            )}
+
             <div>
               <p className={styles.textAreaTitle}>Tell us something special</p>
               <textarea
@@ -45,11 +95,24 @@ const RedberrianInsights = () => {
                 rows="4"
                 cols="50"
                 placeholder="I..."
+                onChange={(e) =>
+                  setUserInfo({
+                    ...userInfo,
+                    something_special: e.target.value,
+                  })
+                }
+                value={userInfo.something_special}
               ></textarea>
             </div>
-            <ErrorMessage
-              text={"* Text should include 10 or more characters"}
-            />
+            {userInfo.showRedberrianError &&
+            userInfo.something_special.length < 10 ? (
+              <ErrorMessage text={"* Please add at least one experience"} />
+            ) : (
+              <ErrorMessage
+                text={"* Please add at least one experience"}
+                style="hidden"
+              />
+            )}
           </form>
         </div>
       </div>

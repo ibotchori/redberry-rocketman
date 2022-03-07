@@ -38,9 +38,24 @@ const Pagination = () => {
       navigate("/covid");
     }
     if (userInfo.skills.length < 1) {
-      setUserInfo({ ...userInfo, showCovidError: true });
+      setUserInfo({ ...userInfo, showSkillError: true });
     } else {
       navigate("/covid");
+    }
+  };
+
+  const submitButtonClick = () => {
+    if (location.pathname !== "/redberrian") {
+      navigate("/submit");
+    }
+    if (
+      userInfo.devtalk_topic.length < 10 ||
+      userInfo.something_special.length < 10 ||
+      userInfo.will_organize_devtalk === "undefined"
+    ) {
+      setUserInfo({ ...userInfo, showRedberrianError: true });
+    } else {
+      navigate("/submit");
     }
   };
 
@@ -52,7 +67,7 @@ const Pagination = () => {
       <span onClick={() => skillButtonClick()} className={styles.inactive} />
       <span onClick={() => covidButtonClick()} className={styles.inactive} />
       <Link to="/redberrian" className={styles.inactive} />
-      <Link to="/submit" className={styles.inactive} />
+      <span onClick={() => submitButtonClick()} className={styles.inactive} />
 
       <img className={styles.arrow} src="/images/left.png" />
     </div>

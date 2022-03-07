@@ -92,7 +92,7 @@ const TechnicalSkill = () => {
 
   // Hide error message when deleting experience
   useEffect(() => {
-    setUserInfo({ ...userInfo, showCovidError: false });
+    setUserInfo({ ...userInfo, showSkillError: false });
   }, [userInfo.skills.length]);
 
   const removeWorkingExperience = (itemId) => {
@@ -172,7 +172,7 @@ const TechnicalSkill = () => {
                 ) : (
                   <p>No experience added.</p>
                 )}
-                {userInfo.showCovidError && userInfo.skills.length < 1 ? (
+                {userInfo.showSkillError && userInfo.skills.length < 1 ? (
                   <ErrorMessage text={"* Please add at least one experience"} />
                 ) : (
                   <ErrorMessage

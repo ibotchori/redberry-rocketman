@@ -14,11 +14,12 @@ export const UserProvider = (props) => {
     had_covid_at: "",
     vaccinated: true,
     vaccinated_at: "",
-    will_organize_devtalk: true,
+    will_organize_devtalk: "undefined",
     devtalk_topic: "",
     something_special: "",
     showError: false,
-    showCovidError: false,
+    showSkillError: false,
+    showRedberrianError: false,
   });
   return (
     <UserContext.Provider value={[userInfo, setUserInfo]}>
