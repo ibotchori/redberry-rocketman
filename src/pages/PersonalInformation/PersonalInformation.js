@@ -14,8 +14,6 @@ const PersonalInformation = () => {
     }
   }, [userInfo.email]);
 
-  console.log(regEmail.test(userInfo.email));
-
   return (
     <div className={styles.main}>
       <div className={styles.mainLeft}>

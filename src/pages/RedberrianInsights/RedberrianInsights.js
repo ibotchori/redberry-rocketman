@@ -7,9 +7,6 @@ const RedberrianInsights = () => {
   // Global state
   const [userInfo, setUserInfo] = useContext(UserContext);
 
-  console.log(userInfo.will_organize_devtalk);
-  console.log(typeof userInfo.will_organize_devtalk);
-
   return (
     <div className={styles.main}>
       <div className={styles.mainLeft}>
@@ -59,31 +56,37 @@ const RedberrianInsights = () => {
               <ErrorMessage text={"* Choose one option"} style="hidden" />
             )}
 
-            <div>
-              <p className={styles.textAreaTitle}>
-                What would you speak about at Devtalk?
-              </p>
-              <textarea
-                className={styles.textArea}
-                id="w3review"
-                name="w3review"
-                rows="4"
-                cols="50"
-                placeholder="I would..."
-                onChange={(e) =>
-                  setUserInfo({ ...userInfo, devtalk_topic: e.target.value })
-                }
-                value={userInfo.devtalk_topic}
-              ></textarea>
-            </div>
-            {userInfo.showRedberrianError &&
-            userInfo.devtalk_topic.length < 10 ? (
-              <ErrorMessage text={"* Please add at least one experience"} />
+            {userInfo.will_organize_devtalk === true ? (
+              <div>
+                <p className={styles.textAreaTitle}>
+                  What would you speak about at Devtalk?
+                </p>
+                <textarea
+                  className={styles.textArea}
+                  id="w3review"
+                  name="w3review"
+                  rows="4"
+                  cols="50"
+                  placeholder="I would..."
+                  onChange={(e) =>
+                    setUserInfo({ ...userInfo, devtalk_topic: e.target.value })
+                  }
+                  value={userInfo.devtalk_topic}
+                ></textarea>
+                {userInfo.showRedberrianError &&
+                userInfo.devtalk_topic.length < 10 ? (
+                  <ErrorMessage
+                    text={"* Text should include 10 or more characters"}
+                  />
+                ) : (
+                  <ErrorMessage
+                    text={"* Text should include 10 or more characters"}
+                    style="hidden"
+                  />
+                )}
+              </div>
             ) : (
-              <ErrorMessage
-                text={"* Please add at least one experience"}
-                style="hidden"
-              />
+              <></>
             )}
 
             <div>
@@ -106,10 +109,12 @@ const RedberrianInsights = () => {
             </div>
             {userInfo.showRedberrianError &&
             userInfo.something_special.length < 10 ? (
-              <ErrorMessage text={"* Please add at least one experience"} />
+              <ErrorMessage
+                text={"* Text should include 10 or more characters"}
+              />
             ) : (
               <ErrorMessage
-                text={"* Please add at least one experience"}
+                text={"* Text should include 10 or more characters"}
                 style="hidden"
               />
             )}

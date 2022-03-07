@@ -38,17 +38,16 @@
 }
 
 .form {
-  padding-left: 100px;
+  padding-left: 200px;
   padding-top: 10px;
 }
 
 .question {
-  padding-bottom: 20px;
   font-size: 18px;
+  padding-top: 40px;
 }
 
 .textAreaTitle {
-  padding-top: 20px;
   font-size: 18px;
 }
 .textArea {
@@ -60,4 +59,7 @@
   border-radius: 4px;
   box-sizing: border-box;
   outline: none;
+}
+.hidden {
+  visibility: hidden;
 }

@@ -64,9 +64,13 @@ const Pagination = () => {
       navigate("/submit");
     }
     if (
-      userInfo.devtalk_topic.length < 10 ||
       userInfo.something_special.length < 10 ||
       userInfo.will_organize_devtalk === "undefined"
+    ) {
+      setUserInfo({ ...userInfo, showRedberrianError: true });
+    } else if (
+      userInfo.will_organize_devtalk === true &&
+      userInfo.devtalk_topic.length < 10
     ) {
       setUserInfo({ ...userInfo, showRedberrianError: true });
     } else {
