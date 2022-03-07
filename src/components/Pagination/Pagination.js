@@ -29,6 +29,7 @@ const Pagination = () => {
       userInfo.email !== "" &&
       userInfo.phone !== ""
     ) {
+      setSkillButtonStyle(styles.active);
       navigate("/skills");
     }
   };
@@ -40,6 +41,7 @@ const Pagination = () => {
     if (userInfo.skills.length < 1) {
       setUserInfo({ ...userInfo, showSkillError: true });
     } else {
+      setCovidButtonStyle(styles.active);
       navigate("/covid");
     }
   };
@@ -55,6 +57,7 @@ const Pagination = () => {
     } else if (userInfo.vaccinated === true && userInfo.vaccinated_at === "") {
       setUserInfo({ ...userInfo, showCovidError: true });
     } else {
+      setRedberrianButtonStyle(styles.active);
       navigate("/redberrian");
     }
   };
@@ -78,16 +81,21 @@ const Pagination = () => {
     }
   };
 
+  const [skillButtonStyle, setSkillButtonStyle] = useState(styles.inactive);
+  const [covidButtonStyle, setCovidButtonStyle] = useState(styles.inactive);
+  const [redberrianButtonStyle, setRedberrianButtonStyle] = useState(
+    styles.inactive
+  );
   return (
     <div className={styles.main}>
       <img className={styles.arrow} src="/images/right.png" />
 
       <Link to="/personalInfo" className={styles.active} />
-      <span onClick={() => skillButtonClick()} className={styles.inactive} />
-      <span onClick={() => covidButtonClick()} className={styles.inactive} />
+      <span onClick={() => skillButtonClick()} className={skillButtonStyle} />
+      <span onClick={() => covidButtonClick()} className={covidButtonStyle} />
       <span
         onClick={() => redberrianButtonClick()}
-        className={styles.inactive}
+        className={redberrianButtonStyle}
       />
       <span onClick={() => submitButtonClick()} className={styles.inactive} />
 

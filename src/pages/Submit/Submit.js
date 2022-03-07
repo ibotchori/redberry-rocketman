@@ -7,7 +7,7 @@ const Submit = () => {
       <Link to="/thanks" className={styles.button}>
         Submit
       </Link>
-      <Link to="/redberrian" className={styles.link}>
+      <Link to="/personalInfo" className={styles.link}>
         &#8592; Go back
       </Link>
     </div>
