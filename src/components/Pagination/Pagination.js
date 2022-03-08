@@ -11,7 +11,6 @@ const Pagination = () => {
 
   // Global state
   const [userInfo, setUserInfo] = useContext(UserContext);
-  console.log(location.pathname);
 
   const skillButtonClick = () => {
     if (location.pathname === "/personalInfo") {
@@ -44,7 +43,8 @@ const Pagination = () => {
         setCovidButtonStyle(styles.active);
         navigate("/covid");
       }
-    } else {
+    } else if (location.pathname === "/personalInfo") {
+      setSkillButtonStyle(styles.bounce);
       return;
     }
   };
@@ -64,7 +64,11 @@ const Pagination = () => {
         setRedberrianButtonStyle(styles.active);
         navigate("/redberrian");
       }
-    } else {
+    } else if (location.pathname === "/skills") {
+      setCovidButtonStyle(styles.bounce);
+      return;
+    } else if (location.pathname === "/personalInfo") {
+      setSkillButtonStyle(styles.bounce);
       return;
     }
   };
@@ -84,7 +88,14 @@ const Pagination = () => {
       } else {
         navigate("/submit");
       }
-    } else {
+    } else if (location.pathname === "/covid") {
+      setRedberrianButtonStyle(styles.bounce);
+      return;
+    } else if (location.pathname === "/personalInfo") {
+      setSkillButtonStyle(styles.bounce);
+      return;
+    } else if (location.pathname === "/skills") {
+      setCovidButtonStyle(styles.bounce);
       return;
     }
   };
@@ -170,6 +181,10 @@ const Pagination = () => {
       setSkillButtonStyle(styles.active);
     } else if (location.pathname === "/skills") {
       setSkillButtonStyle(styles.active);
+    } else if (location.pathname === "/personalInfo") {
+      setRedberrianButtonStyle(styles.inactive);
+      setCovidButtonStyle(styles.inactive);
+      setSkillButtonStyle(styles.inactive);
     }
   }, [location.pathname]);
 
