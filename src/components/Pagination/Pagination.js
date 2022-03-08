@@ -9,6 +9,7 @@ const Pagination = () => {
   const navigate = useNavigate();
 
   let regEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  let regPhone = /^5[0-9]{8}$/g;
 
   // Global state
   const [userInfo, setUserInfo] = useContext(UserContext);
@@ -19,14 +20,14 @@ const Pagination = () => {
         userInfo.first_name.length < 2 ||
         userInfo.last_name.length < 2 ||
         regEmail.test(userInfo?.email) === false ||
-        userInfo.phone.length < 9
+        regPhone.test(userInfo?.phone) === false
       ) {
         setUserInfo({ ...userInfo, showError: true });
       } else if (
         userInfo.first_name !== "" &&
         userInfo.last_name !== "" &&
         userInfo.email !== "" &&
-        userInfo.phone !== ""
+        userInfo.phone === ""
       ) {
         setSkillButtonStyle(styles.active);
         navigate("/skills");

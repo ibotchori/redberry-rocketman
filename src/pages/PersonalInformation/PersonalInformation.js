@@ -8,6 +8,7 @@ const PersonalInformation = () => {
   const [userInfo, setUserInfo] = useContext(UserContext);
 
   let regEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  let regPhone = /^5[0-9]{8}$/g;
 
   return (
     <div className={styles.main}>
@@ -94,7 +95,8 @@ const PersonalInformation = () => {
                 }
                 value={userInfo.phone}
               />
-              {userInfo.showError && userInfo.phone.length < 9 ? (
+              {userInfo.showError &&
+              regPhone.test(userInfo?.phone) === false ? (
                 <ErrorMessage text={"* Please enter a valid phone number"} />
               ) : (
                 <ErrorMessage
