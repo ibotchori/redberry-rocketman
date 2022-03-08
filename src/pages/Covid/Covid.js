@@ -21,11 +21,9 @@ const Covid = () => {
                 id="sairme"
                 name="sairme"
                 checked={
-                  userInfo.work_preference === "From Sairme Office"
-                    ? true
-                    : false
+                  userInfo.work_preference === "from_office" ? true : false
                 }
-                value={"From Sairme Office"}
+                value={"from_office"}
                 onChange={(e) =>
                   setUserInfo({
                     ...userInfo,
@@ -41,9 +39,9 @@ const Covid = () => {
                 id="sairme"
                 name="home"
                 checked={
-                  userInfo.work_preference === "From Home" ? true : false
+                  userInfo.work_preference === "from_home" ? true : false
                 }
-                value={"From Home"}
+                value={"from_home"}
                 onChange={(e) =>
                   setUserInfo({
                     ...userInfo,
@@ -58,8 +56,8 @@ const Covid = () => {
                 type="radio"
                 id="sairme"
                 name="hybrid"
-                checked={userInfo.work_preference === "Hybrid" ? true : false}
-                value={"Hybrid"}
+                checked={userInfo.work_preference === "hybrid" ? true : false}
+                value={"hybrid"}
                 onChange={(e) =>
                   setUserInfo({
                     ...userInfo,

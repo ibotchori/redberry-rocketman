@@ -171,6 +171,13 @@ const Pagination = () => {
     }
   };
 
+  // States for button style
+  const [skillButtonStyle, setSkillButtonStyle] = useState(styles.inactive);
+  const [covidButtonStyle, setCovidButtonStyle] = useState(styles.inactive);
+  const [redberrianButtonStyle, setRedberrianButtonStyle] = useState(
+    styles.inactive
+  );
+
   useEffect(() => {
     if (location.pathname === "/redberrian") {
       setRedberrianButtonStyle(styles.active);
@@ -188,12 +195,6 @@ const Pagination = () => {
     }
   }, [location.pathname]);
 
-  // States for button style
-  const [skillButtonStyle, setSkillButtonStyle] = useState(styles.inactive);
-  const [covidButtonStyle, setCovidButtonStyle] = useState(styles.inactive);
-  const [redberrianButtonStyle, setRedberrianButtonStyle] = useState(
-    styles.inactive
-  );
   return (
     <div className={styles.main}>
       <img
