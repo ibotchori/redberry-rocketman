@@ -15,6 +15,15 @@ const Pagination = () => {
   const [userInfo, setUserInfo] = useContext(UserContext);
 
   const skillButtonClick = () => {
+    if (location.pathname === "/covid") {
+      navigate("/skills");
+      setCovidButtonStyle(styles.inactive);
+    }
+    if (location.pathname === "/redberrian") {
+      navigate("/skills");
+      setRedberrianButtonStyle(styles.inactive);
+      setCovidButtonStyle(styles.inactive);
+    }
     if (location.pathname === "/personalInfo") {
       if (
         userInfo.first_name.length < 2 ||
@@ -27,7 +36,7 @@ const Pagination = () => {
         userInfo.first_name !== "" &&
         userInfo.last_name !== "" &&
         userInfo.email !== "" &&
-        userInfo.phone === ""
+        userInfo.phone !== ""
       ) {
         setSkillButtonStyle(styles.active);
         navigate("/skills");
@@ -38,6 +47,10 @@ const Pagination = () => {
   };
 
   const covidButtonClick = () => {
+    if (location.pathname === "/redberrian") {
+      navigate("/covid");
+      setRedberrianButtonStyle(styles.inactive);
+    }
     if (location.pathname === "/skills") {
       if (userInfo.skills.length < 1) {
         setUserInfo({ ...userInfo, showSkillError: true });
@@ -108,7 +121,7 @@ const Pagination = () => {
         userInfo.first_name.length < 2 ||
         userInfo.last_name.length < 2 ||
         regEmail.test(userInfo?.email) === false ||
-        userInfo.phone.length < 9
+        regPhone.test(userInfo?.phone) === false
       ) {
         setUserInfo({ ...userInfo, showError: true });
       } else if (
@@ -179,21 +192,26 @@ const Pagination = () => {
   const [redberrianButtonStyle, setRedberrianButtonStyle] = useState(
     styles.inactive
   );
+  const [infoButtonStyle, setInfoButtonStyle] = useState(styles.inactive);
 
   useEffect(() => {
     if (location.pathname === "/redberrian") {
-      setRedberrianButtonStyle(styles.active);
+      setRedberrianButtonStyle(styles.now);
       setCovidButtonStyle(styles.active);
       setSkillButtonStyle(styles.active);
+      setInfoButtonStyle(styles.active);
     } else if (location.pathname === "/covid") {
-      setCovidButtonStyle(styles.active);
+      setCovidButtonStyle(styles.now);
       setSkillButtonStyle(styles.active);
+      setInfoButtonStyle(styles.active);
     } else if (location.pathname === "/skills") {
-      setSkillButtonStyle(styles.active);
+      setSkillButtonStyle(styles.now);
+      setInfoButtonStyle(styles.active);
     } else if (location.pathname === "/personalInfo") {
       setRedberrianButtonStyle(styles.inactive);
       setCovidButtonStyle(styles.inactive);
       setSkillButtonStyle(styles.inactive);
+      setInfoButtonStyle(styles.now);
     }
   }, [location.pathname]);
 
@@ -205,7 +223,7 @@ const Pagination = () => {
         src="/images/right.png"
       />
 
-      <Link to="/personalInfo" className={styles.active} />
+      <Link to="/personalInfo" className={infoButtonStyle} />
       <span onClick={() => skillButtonClick()} className={skillButtonStyle} />
       <span onClick={() => covidButtonClick()} className={covidButtonStyle} />
       <span

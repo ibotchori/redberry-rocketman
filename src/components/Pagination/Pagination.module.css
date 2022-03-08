@@ -15,7 +15,7 @@
   border-radius: 50%;
   background-color: #fe3b1f;
   cursor: pointer;
-  opacity: 0.3;
+  opacity: 0.2;
 }
 
 .active {
@@ -24,28 +24,37 @@
   border-radius: 50%;
   background-color: #fe3b1f;
   cursor: pointer;
+  opacity: 0.8;
+}
+.now {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  cursor: pointer;
   opacity: 1;
 }
+
 @-webkit-keyframes swing {
   15% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+  30% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+  50% {
     -webkit-transform: translateY(5px);
     transform: translateY(5px);
   }
-  30% {
+  65% {
     -webkit-transform: translateY(-5px);
     transform: translateY(-5px);
   }
-  50% {
+  80% {
     -webkit-transform: translateY(3px);
     transform: translateY(3px);
-  }
-  65% {
-    -webkit-transform: translateY(-3px);
-    transform: translateY(-3px);
-  }
-  80% {
-    -webkit-transform: translateY(2px);
-    transform: translateY(2px);
   }
   100% {
     -webkit-transform: translateY(0);
@@ -54,24 +63,24 @@
 }
 @keyframes swing {
   15% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+  30% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+  50% {
     -webkit-transform: translateY(5px);
     transform: translateY(5px);
   }
-  30% {
+  65% {
     -webkit-transform: translateY(-5px);
     transform: translateY(-5px);
   }
-  50% {
+  80% {
     -webkit-transform: translateY(3px);
     transform: translateY(3px);
-  }
-  65% {
-    -webkit-transform: translateY(-3px);
-    transform: translateY(-3px);
-  }
-  80% {
-    -webkit-transform: translateY(2px);
-    transform: translateY(2px);
   }
   100% {
     -webkit-transform: translateY(0);
