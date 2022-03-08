@@ -2,17 +2,12 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import styles from "./PersonalInformation.module.css";
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../context/userContext";
-import { regEmail } from "../../utils/regex";
 
 const PersonalInformation = () => {
   // Global state
   const [userInfo, setUserInfo] = useContext(UserContext);
 
-  useEffect(() => {
-    if (regEmail.test(userInfo?.email) === true) {
-      setUserInfo({ ...userInfo, showError: false });
-    }
-  }, [userInfo.email]);
+  let regEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
   return (
     <div className={styles.main}>

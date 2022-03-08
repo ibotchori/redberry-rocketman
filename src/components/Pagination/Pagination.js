@@ -3,11 +3,12 @@ import React, { useContext, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
-import { regEmail } from "../../utils/regex";
 
 const Pagination = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  let regEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
   // Global state
   const [userInfo, setUserInfo] = useContext(UserContext);
