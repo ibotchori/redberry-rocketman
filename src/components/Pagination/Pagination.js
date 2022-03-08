@@ -89,6 +89,91 @@ const Pagination = () => {
     }
   };
 
+  const nextButtonClick = () => {
+    if (location.pathname === "/personalInfo") {
+      if (
+        userInfo.first_name.length < 2 ||
+        userInfo.last_name.length < 2 ||
+        regEmail.test(userInfo?.email) === false ||
+        userInfo.phone.length < 9
+      ) {
+        setUserInfo({ ...userInfo, showError: true });
+      } else if (
+        userInfo.first_name !== "" &&
+        userInfo.last_name !== "" &&
+        userInfo.email !== "" &&
+        userInfo.phone !== ""
+      ) {
+        setSkillButtonStyle(styles.active);
+        navigate("/skills");
+      }
+    } else if (location.pathname === "/skills") {
+      if (userInfo.skills.length < 1) {
+        setUserInfo({ ...userInfo, showSkillError: true });
+      } else {
+        setCovidButtonStyle(styles.active);
+        navigate("/covid");
+      }
+    } else if (location.pathname === "/covid") {
+      if (userInfo.work_preference === "") {
+        setUserInfo({ ...userInfo, showCovidError: true });
+      } else if (userInfo.had_covid === true && userInfo.had_covid_at === "") {
+        setUserInfo({ ...userInfo, showCovidError: true });
+      } else if (
+        userInfo.vaccinated === true &&
+        userInfo.vaccinated_at === ""
+      ) {
+        setUserInfo({ ...userInfo, showCovidError: true });
+      } else {
+        setRedberrianButtonStyle(styles.active);
+        navigate("/redberrian");
+      }
+    } else if (location.pathname === "/redberrian") {
+      if (
+        userInfo.something_special.length < 10 ||
+        userInfo.will_organize_devtalk === "undefined"
+      ) {
+        setUserInfo({ ...userInfo, showRedberrianError: true });
+      } else if (
+        userInfo.will_organize_devtalk === true &&
+        userInfo.devtalk_topic.length < 10
+      ) {
+        setUserInfo({ ...userInfo, showRedberrianError: true });
+      } else {
+        navigate("/submit");
+      }
+    }
+  };
+
+  const prevButtonClick = () => {
+    if (location.pathname === "/redberrian") {
+      navigate("/covid");
+      setRedberrianButtonStyle(styles.inactive);
+    } else if (location.pathname === "/covid") {
+      navigate("/skills");
+      setCovidButtonStyle(styles.inactive);
+    } else if (location.pathname === "/skills") {
+      navigate("/personalInfo");
+      setSkillButtonStyle(styles.inactive);
+    } else if (location.pathname === "/personalInfo") {
+      navigate("/");
+    }
+  };
+
+  useEffect(() => {
+    if (location.pathname === "/redberrian") {
+      setRedberrianButtonStyle(styles.active);
+      setCovidButtonStyle(styles.active);
+      setSkillButtonStyle(styles.active);
+    } else if (location.pathname === "/covid") {
+      setCovidButtonStyle(styles.active);
+      setSkillButtonStyle(styles.active);
+    } else if (location.pathname === "/skills") {
+      setSkillButtonStyle(styles.active);
+    }
+  }, [location.pathname]);
+
+  // States for button style
   const [skillButtonStyle, setSkillButtonStyle] = useState(styles.inactive);
   const [covidButtonStyle, setCovidButtonStyle] = useState(styles.inactive);
   const [redberrianButtonStyle, setRedberrianButtonStyle] = useState(
@@ -96,7 +181,11 @@ const Pagination = () => {
   );
   return (
     <div className={styles.main}>
-      <img className={styles.arrow} src="/images/right.png" />
+      <img
+        onClick={() => prevButtonClick()}
+        className={styles.arrow}
+        src="/images/right.png"
+      />
 
       <Link to="/personalInfo" className={styles.active} />
       <span onClick={() => skillButtonClick()} className={skillButtonStyle} />
@@ -107,7 +196,11 @@ const Pagination = () => {
       />
       <span onClick={() => submitButtonClick()} className={styles.inactive} />
 
-      <img className={styles.arrow} src="/images/left.png" />
+      <img
+        onClick={() => nextButtonClick()}
+        className={styles.arrow}
+        src="/images/left.png"
+      />
     </div>
   );
 };
