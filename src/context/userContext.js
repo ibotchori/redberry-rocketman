@@ -3,7 +3,7 @@ export const UserContext = createContext();
 
 export const UserProvider = (props) => {
   const [userInfo, setUserInfo] = useState({
-    token: "a631c5f6-1eb5-4828-aed1-ed8b233f1265",
+    token: "edd4ae55-661a-4673-87cc-a86e8d7a19d8",
     first_name: "",
     last_name: "",
     email: "",
