@@ -123,7 +123,7 @@ const TechnicalSkill = () => {
                 </option>
                 {skills?.map((item) => {
                   return (
-                    <option key={item.id} value={item.title}>
+                    <option key={Math.random() * 9} value={item.title}>
                       {item.title}
                     </option>
                   );

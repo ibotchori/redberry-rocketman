@@ -149,7 +149,7 @@ const SubmittedItem = ({ post, index }) => {
               <div>
                 <p className={styles.infoTitle}>Skillset</p>
                 {post.skills.map((item) => (
-                  <div className={styles.infoProperty}>
+                  <div key={Math.random() * 7} className={styles.infoProperty}>
                     <span>
                       {item.id === 1
                         ? "HTML"
