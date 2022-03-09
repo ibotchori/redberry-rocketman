@@ -2,7 +2,7 @@ import styles from "./ErrorPage.module.css";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const ErrorPage = () => {
+const ErrorPage = ({ text }) => {
   let navigate = useNavigate();
 
   setTimeout(() => {
@@ -10,7 +10,9 @@ const ErrorPage = () => {
   }, 3000);
   return (
     <div className={styles.main}>
-      <div className={styles.title}>Page not found. &#128533;</div>
+      <div className={styles.title}>
+        {text ? text : "Oops! Something went wrong"} &#128533;
+      </div>
       <Link to="/redberrian" className={styles.link}>
         &#8592; Home Page
       </Link>

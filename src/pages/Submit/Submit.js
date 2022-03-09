@@ -4,6 +4,7 @@ import { UserContext } from "../../context/userContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 const Submit = () => {
   // Global state
@@ -35,8 +36,8 @@ const Submit = () => {
   if (dataForSubmit.had_covid_at === "") {
     delete dataForSubmit.had_covid_at;
   }
-  if (dataForSubmit.vacinated_at === "") {
-    delete dataForSubmit.vacinated_at;
+  if (dataForSubmit.vaccinated_at === "") {
+    delete dataForSubmit.vaccinated_at;
   }
 
   if (dataForSubmit.devtalk_topic === "") {
@@ -86,10 +87,12 @@ const Submit = () => {
         });
         navigate("/thanks");
       } catch (error) {
-        alert("Catch Error");
+        console.log(error.message);
+        navigate("/errorPage");
       }
     } else {
-      alert("Conditional Error");
+      console.log("Please fill all fields.");
+      navigate("/errorPage");
     }
   };
   return (
