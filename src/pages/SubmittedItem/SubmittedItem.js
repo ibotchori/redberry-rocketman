@@ -19,7 +19,6 @@ const SubmittedItem = () => {
     getResults();
   }, []);
 
-  console.log(applications);
   return (
     <div className={styles.main}>
       <div className={styles.title}>
@@ -68,7 +67,6 @@ const SubmittedItem = () => {
                         type="radio"
                         id="sairme"
                         name="work"
-                        defaultValue="HTML"
                         checked={
                           post.work_preference === "from_office" ? true : false
                         }
@@ -80,7 +78,6 @@ const SubmittedItem = () => {
                         type="radio"
                         id="home"
                         name="work"
-                        defaultValue="CSS"
                         checked={
                           post.work_preference === "from_home" ? true : false
                         }
@@ -92,7 +89,6 @@ const SubmittedItem = () => {
                         type="radio"
                         id="hybrid"
                         name="work"
-                        defaultValue="JavaScript"
                         checked={
                           post.work_preference === "hybrid" ? true : false
                         }
@@ -107,18 +103,15 @@ const SubmittedItem = () => {
                       type="radio"
                       id="yes"
                       name="covid"
-                      defaultValue="HTML"
                       checked={post.had_covid === true}
                       disabled
                     />
                     &nbsp; <label htmlFor="yes">Yes</label>
                     <br />
                     <input
-                      checked
                       type="radio"
                       id="no"
                       name="covid"
-                      defaultValue="CSS"
                       checked={post.had_covid === false}
                       disabled
                     />
@@ -132,7 +125,6 @@ const SubmittedItem = () => {
                       type="date"
                       id="date"
                       name="covidDate"
-                      defaultValue="HTML"
                       disabled
                       value={post.had_covid_at}
                     />
@@ -140,11 +132,9 @@ const SubmittedItem = () => {
                   <div className={styles.question}>
                     <p>Have you been vaccinated?</p>
                     <input
-                      checked
                       type="radio"
                       id="yes"
                       name="contact"
-                      defaultValue="HTML"
                       checked={post.vaccinated === true}
                       disabled
                     />
@@ -154,7 +144,6 @@ const SubmittedItem = () => {
                       type="radio"
                       id="no"
                       name="contact"
-                      defaultValue="CSS"
                       checked={post.vaccinated === false}
                       disabled
                     />
@@ -176,14 +165,28 @@ const SubmittedItem = () => {
                 <div className={styles.column}>
                   <div>
                     <p className={styles.infoTitle}>Skillset</p>
-                    <div className={styles.infoProperty}>
-                      <span>PHP</span>
-                      <div>Years of Experience: 10</div>
-                    </div>
-                    <div className={styles.infoProperty}>
-                      <span>React.JS</span>
-                      <div>Years of Experience: 5</div>
-                    </div>
+                    {post.skills.map((item) => (
+                      <div className={styles.infoProperty}>
+                        <span>
+                          {item.id === 1
+                            ? "HTML"
+                            : item.id === 2
+                            ? "CSS"
+                            : item.id === 3
+                            ? "PHP"
+                            : item.id === 4
+                            ? "Laravel"
+                            : item.id === 5
+                            ? "React.JS"
+                            : item.id === 6
+                            ? "Vue.JS"
+                            : item.id === 7
+                            ? "Svelte"
+                            : "Angular"}
+                        </span>
+                        <div>Years of Experience: {item.experience}</div>
+                      </div>
+                    ))}
                   </div>
                   <div>
                     <p className={styles.insightsTitle}>Insights</p>
@@ -198,7 +201,6 @@ const SubmittedItem = () => {
                         type="radio"
                         id="yes"
                         name="devtalks"
-                        defaultValue="HTML"
                       />
                       &nbsp; <label htmlFor="yes">Yes</label>
                       <br />
@@ -208,7 +210,6 @@ const SubmittedItem = () => {
                         type="radio"
                         id="no"
                         name="devtalks"
-                        defaultValue="CSS"
                       />
                       &nbsp; <label htmlFor="no">No</label>
                     </div>
