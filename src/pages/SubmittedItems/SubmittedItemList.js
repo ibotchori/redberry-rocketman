@@ -11,7 +11,7 @@ const SubmittedItemList = () => {
     async function getResults() {
       const results = await axios(
         "https://bootcamp-2022.devtest.ge/api/applications",
-        { params: { token: "9e3aad51-d75c-42fa-b0d5-565ac53d0a82" } }
+        { params: { token: "4a367e79-2313-4af6-86b5-9073fad0d74b" } }
       );
       setApplications(results.data);
     }

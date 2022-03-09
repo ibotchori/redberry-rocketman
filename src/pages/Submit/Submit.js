@@ -4,7 +4,6 @@ import { UserContext } from "../../context/userContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import ErrorPage from "../ErrorPage/ErrorPage";
 
 const Submit = () => {
   // Global state
@@ -70,7 +69,7 @@ const Submit = () => {
 
         // Clear global state after submit
         setUserInfo({
-          token: "9e3aad51-d75c-42fa-b0d5-565ac53d0a82",
+          token: "4a367e79-2313-4af6-86b5-9073fad0d74b",
           first_name: "",
           last_name: "",
           email: "",
