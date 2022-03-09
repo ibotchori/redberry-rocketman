@@ -135,7 +135,7 @@ const TechnicalSkill = () => {
                 <ErrorMessage text={skillErrorMessage} />
               )}
               <input
-                onChange={(e) => setExpYear(e.target.value)}
+                onChange={(e) => setExpYear(Math.abs(e.target.value))}
                 className={styles.input}
                 type="number"
                 id="number"
