@@ -117,18 +117,23 @@ const SubmittedItem = () => {
                     />
                     &nbsp; <label htmlFor="no">No</label>
                   </div>
-                  <div className={styles.question}>
-                    <p>When did you have covid 19?</p>
+                  {post.had_covid === true ? (
+                    <div className={styles.question}>
+                      <p>When did you have covid 19?</p>
 
-                    <input
-                      className={styles.dateInput}
-                      type="date"
-                      id="date"
-                      name="covidDate"
-                      disabled
-                      value={post.had_covid_at}
-                    />
-                  </div>
+                      <input
+                        className={styles.dateInput}
+                        type="date"
+                        id="date"
+                        name="covidDate"
+                        disabled
+                        value={post.had_covid_at}
+                      />
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+
                   <div className={styles.question}>
                     <p>Have you been vaccinated?</p>
                     <input
@@ -149,18 +154,22 @@ const SubmittedItem = () => {
                     />
                     &nbsp; <label htmlFor="no">No</label>
                   </div>
-                  <div className={styles.question}>
-                    <p>When did you get covid vaccine?</p>
+                  {post.vaccinated === true ? (
+                    <div className={styles.question}>
+                      <p>When did you get covid vaccine?</p>
 
-                    <input
-                      className={styles.dateInput}
-                      type="date"
-                      id="date"
-                      name="covidVAccine"
-                      disabled
-                      value={post.vaccinated_at}
-                    />
-                  </div>
+                      <input
+                        className={styles.dateInput}
+                        type="date"
+                        id="date"
+                        name="covidVAccine"
+                        disabled
+                        value={post.vaccinated_at}
+                      />
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                 </div>
                 <div className={styles.column}>
                   <div>
@@ -213,20 +222,25 @@ const SubmittedItem = () => {
                       />
                       &nbsp; <label htmlFor="no">No</label>
                     </div>
-                    <div>
-                      <p className={styles.textAreaTitle}>
-                        What would you speak about at Devtalk?
-                      </p>
-                      <textarea
-                        className={styles.textArea}
-                        id="w3review"
-                        name="w3review"
-                        rows="4"
-                        cols="50"
-                        disabled
-                        placeholder={post.devtalk_topic}
-                      ></textarea>
-                    </div>
+                    {post.will_organize_devtalk === true ? (
+                      <div>
+                        <p className={styles.textAreaTitle}>
+                          What would you speak about at Devtalk?
+                        </p>
+                        <textarea
+                          className={styles.textArea}
+                          id="w3review"
+                          name="w3review"
+                          rows="4"
+                          cols="50"
+                          disabled
+                          placeholder={post.devtalk_topic}
+                        ></textarea>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+
                     <div>
                       <p className={styles.textAreaTitle}>
                         Tell us something special
