@@ -1,6 +1,6 @@
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import styles from "./Redberrian.module.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../context/userContext";
 
 const RedberrianInsights = () => {

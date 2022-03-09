@@ -1,6 +1,6 @@
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import styles from "./PersonalInformation.module.css";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../../context/userContext";
 
 const PersonalInformation = () => {
@@ -78,9 +78,12 @@ const PersonalInformation = () => {
               />
               {userInfo?.showError &&
               regEmail.test(userInfo?.email) === false ? (
-                <ErrorMessage text={"* Email is required"} />
+                <ErrorMessage text={"* Please enter a valid Email"} />
               ) : (
-                <ErrorMessage text={"* Email is required"} style="hidden" />
+                <ErrorMessage
+                  text={"* Please enter a valid Email"}
+                  style="hidden"
+                />
               )}
             </div>
             <div>

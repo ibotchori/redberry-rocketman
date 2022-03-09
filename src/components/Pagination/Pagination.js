@@ -218,6 +218,7 @@ const Pagination = () => {
   return (
     <div className={styles.main}>
       <img
+        alt="PrevButton"
         onClick={() => prevButtonClick()}
         className={styles.arrow}
         src="/images/right.png"
@@ -233,6 +234,7 @@ const Pagination = () => {
       <span onClick={() => submitButtonClick()} className={styles.inactive} />
 
       <img
+        alt="NextButton"
         onClick={() => nextButtonClick()}
         className={styles.arrow}
         src="/images/left.png"

@@ -50,11 +50,11 @@ const TechnicalSkill = () => {
     };
 
     // Show error messages if input is empty
-    if (selectedSkill == "") {
+    if (selectedSkill === "") {
       setSkillErrorMessage("Select programing language");
       return;
     }
-    if (expYear == "") {
+    if (expYear === "") {
       setExpErrorMessage("Enter duration year");
       return;
     }
@@ -146,7 +146,7 @@ const TechnicalSkill = () => {
               {!expErrorMessage ? (
                 <ErrorMessage style="hidden" />
               ) : (
-                <ErrorMessage />
+                <ErrorMessage text={expErrorMessage} />
               )}
 
               <div className={styles.buttonWrap}>

@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext } from "react";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import styles from "./Covid.module.css";
 import { UserContext } from "../../context/userContext";

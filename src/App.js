@@ -8,12 +8,7 @@ import SubmittedItemList from "./pages/SubmittedItems/SubmittedItemList";
 import TechnicalSkill from "./pages/TechnicalSkill/TechnicalSkill";
 import Thanks from "./pages/Thanks/Thanks";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
   let location = useLocation();
