@@ -4,7 +4,7 @@ import Landing from "./pages/Landing/Landing";
 import PersonalInformation from "./pages/PersonalInformation/PersonalInformation";
 import RedberrianInsights from "./pages/RedberrianInsights/RedberrianInsights";
 import Submit from "./pages/Submit/Submit";
-import SubmittedItem from "./pages/SubmittedItem/SubmittedItem";
+import SubmittedItemList from "./pages/SubmittedItems/SubmittedItemList";
 import TechnicalSkill from "./pages/TechnicalSkill/TechnicalSkill";
 import Thanks from "./pages/Thanks/Thanks";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
@@ -27,7 +27,7 @@ function App() {
         <Route path="/covid" element={<Covid />} />
         <Route path="/redberrian" element={<RedberrianInsights />} />
         <Route path="/submit" element={<Submit />} />
-        <Route path="/submitted-item" element={<SubmittedItem />} />
+        <Route path="/submitted-item" element={<SubmittedItemList />} />
         <Route path="/thanks" element={<Thanks />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
