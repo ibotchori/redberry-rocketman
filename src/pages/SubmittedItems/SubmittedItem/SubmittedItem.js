@@ -77,7 +77,7 @@ const SubmittedItem = ({ post, index }) => {
                   type="radio"
                   id="yes"
                   name="covid"
-                  checked={post.had_covid === true}
+                  checked={post.had_covid ? true : false}
                   disabled
                 />
                 &nbsp; <label htmlFor="yes">Yes</label>
@@ -86,7 +86,7 @@ const SubmittedItem = ({ post, index }) => {
                   type="radio"
                   id="no"
                   name="covid"
-                  checked={post.had_covid === false}
+                  checked={post.had_covid ? false : true}
                   disabled
                 />
                 &nbsp; <label htmlFor="no">No</label>
@@ -101,7 +101,7 @@ const SubmittedItem = ({ post, index }) => {
                     id="date"
                     name="covidDate"
                     disabled
-                    value={post.had_covid_at}
+                    value={post.had_covid_at ? post.had_covid_at : ""}
                   />
                 </div>
               ) : (
@@ -114,7 +114,7 @@ const SubmittedItem = ({ post, index }) => {
                   type="radio"
                   id="yes"
                   name="contact"
-                  checked={post.vaccinated === true}
+                  checked={post.vaccinated ? true : false}
                   disabled
                 />
                 &nbsp; <label htmlFor="yes">Yes</label>
@@ -123,7 +123,7 @@ const SubmittedItem = ({ post, index }) => {
                   type="radio"
                   id="no"
                   name="contact"
-                  checked={post.vaccinated === false}
+                  checked={post.vaccinated ? false : true}
                   disabled
                 />
                 &nbsp; <label htmlFor="no">No</label>
@@ -138,7 +138,7 @@ const SubmittedItem = ({ post, index }) => {
                     id="date"
                     name="covidVAccine"
                     disabled
-                    value={post.vaccinated_at}
+                    value={post.vaccinated_at ? post.vaccinated_at : ""}
                   />
                 </div>
               ) : (
@@ -178,7 +178,7 @@ const SubmittedItem = ({ post, index }) => {
                     Would you attend Devtalks and maybe also organize your own?
                   </p>
                   <input
-                    checked={post.will_organize_devtalk === true}
+                    checked={post.will_organize_devtalk ? true : false}
                     disabled
                     type="radio"
                     id="yes"
@@ -187,7 +187,7 @@ const SubmittedItem = ({ post, index }) => {
                   &nbsp; <label htmlFor="yes">Yes</label>
                   <br />
                   <input
-                    checked={post.will_organize_devtalk === false}
+                    checked={post.will_organize_devtalk ? false : true}
                     disabled
                     type="radio"
                     id="no"
@@ -207,7 +207,7 @@ const SubmittedItem = ({ post, index }) => {
                       rows="4"
                       cols="50"
                       disabled
-                      placeholder={post.devtalk_topic}
+                      placeholder={post.devtalk_topic ? post.devtalk_topic : ""}
                     ></textarea>
                   </div>
                 ) : (
@@ -225,7 +225,9 @@ const SubmittedItem = ({ post, index }) => {
                     rows="4"
                     cols="50"
                     disabled
-                    placeholder={post.something_special}
+                    placeholder={
+                      post.something_special ? post.something_special : ""
+                    }
                   ></textarea>
                 </div>
               </div>

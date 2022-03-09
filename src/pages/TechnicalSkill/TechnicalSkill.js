@@ -158,7 +158,7 @@ const TechnicalSkill = () => {
               <div className={styles.skills}>
                 {userInfo.skills.length !== 0 ? (
                   userInfo.skills.map((item) => (
-                    <div className={styles.skill}>
+                    <div key={Math.random() * 11} className={styles.skill}>
                       <p className={styles.pLanguage}>{item.title}</p>
                       <p>Years of Experience: {item.experience}</p>
                       <img

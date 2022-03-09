@@ -22,7 +22,7 @@ const Submit = () => {
     had_covid: userInfo.had_covid,
     had_covid_at: userInfo.had_covid_at,
     vaccinated: userInfo.vaccinated,
-    vacinated_at: userInfo.vaccinated_at,
+    vaccinated_at: userInfo.vaccinated_at,
     will_organize_devtalk: userInfo.will_organize_devtalk,
     devtalk_topic: userInfo.devtalk_topic,
     something_special: userInfo.something_special,
