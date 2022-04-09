@@ -3,6 +3,7 @@ import styles from "./TechnicalSkill.module.css";
 import axios from "axios";
 import { UserContext } from "../../context/userContext";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import { useAxios } from "../../CustomHooks/useAxios";
 
 const TechnicalSkill = () => {
   // Global state
@@ -17,16 +18,29 @@ const TechnicalSkill = () => {
   const [expErrorMessage, setExpErrorMessage] = useState("");
 
   // Get skills from API
+  // const [skills, setSkills] = useState([]);
+  // useEffect(() => {
+  //   async function getResults() {
+  //     const results = await axios(
+  //       "https://bootcamp-2022.devtest.ge/api/skills"
+  //     );
+  //     setSkills(results.data);
+  //   }
+  //   getResults();
+  // }, []);
+
+  // Get skills from API with custom hook
   const [skills, setSkills] = useState([]);
+  const { response, error, loading } = useAxios({
+    method: "GET",
+    url: "https://bootcamp-2022.devtest.ge/api/skills",
+  });
+
   useEffect(() => {
-    async function getResults() {
-      const results = await axios(
-        "https://bootcamp-2022.devtest.ge/api/skills"
-      );
-      setSkills(results.data);
+    if (response !== null) {
+      setSkills(response);
     }
-    getResults();
-  }, []);
+  }, [response]);
 
   // Clear error messages if input is not empty
   useEffect(() => {
