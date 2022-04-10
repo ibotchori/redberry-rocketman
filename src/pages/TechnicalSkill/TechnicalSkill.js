@@ -4,6 +4,7 @@ import axios from "axios";
 import { UserContext } from "../../context/userContext";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { useAxios } from "../../CustomHooks/useAxios";
+import { useAxios2 } from "../../CustomHooks/useAxios2";
 
 const TechnicalSkill = () => {
   // Global state
@@ -30,17 +31,33 @@ const TechnicalSkill = () => {
   // }, []);
 
   // Get skills from API with custom hook
-  const [skills, setSkills] = useState([]);
-  const { response, error, loading } = useAxios({
-    method: "GET",
-    url: "https://bootcamp-2022.devtest.ge/api/skills",
-  });
+  // const [skills, setSkills] = useState([]);
+  // const { response, error, loading } = useAxios({
+  //   method: "GET",
+  //   url: "https://bootcamp-2022.devtest.ge/api/skills",
+  // });
 
+  // useEffect(() => {
+  //   if (response !== null) {
+  //     setSkills(response);
+  //   }
+  // }, [response]);
+
+  // Declare second custom hook
+  const Axios = useAxios2();
+
+  //  Get skills from API with second custom hook
+  const [skills, setSkills] = useState([]);
   useEffect(() => {
-    if (response !== null) {
-      setSkills(response);
-    }
-  }, [response]);
+    const getResults = async () => {
+      const results = await Axios.get(
+        "https://bootcamp-2022.devtest.ge/api/skills"
+      );
+      setSkills(results.data);
+    };
+
+    getResults();
+  }, []);
 
   // Clear error messages if input is not empty
   useEffect(() => {
