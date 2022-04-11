@@ -88,6 +88,30 @@ const Submit = () => {
       } catch (error) {
         console.log(error.message);
         navigate("/errorPage");
+        // if API did't respond, save data in dummy state
+        setUserInfo({
+          ...userInfo,
+          dummySubmittedData: [...userInfo.dummySubmittedData, dataForSubmit],
+          // set other global state to default value
+          token: "4a367e79-2313-4af6-86b5-9073fad0d74b",
+          first_name: "",
+          last_name: "",
+          email: "",
+          phone: "",
+          skills: [],
+          work_preference: "",
+          had_covid: false,
+          had_covid_at: "",
+          vaccinated: false,
+          vaccinated_at: "",
+          will_organize_devtalk: "undefined",
+          devtalk_topic: "",
+          something_special: "",
+          showError: false,
+          showSkillError: false,
+          showRedberrianError: false,
+          showCovidError: false,
+        });
       }
     } else {
       console.log("Please fill all fields.");

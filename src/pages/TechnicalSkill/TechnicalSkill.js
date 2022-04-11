@@ -50,10 +50,26 @@ const TechnicalSkill = () => {
   const [skills, setSkills] = useState([]);
   useEffect(() => {
     const getResults = async () => {
-      const results = await Axios.get(
-        "https://bootcamp-2022.devtest.ge/api/skills"
-      );
-      setSkills(results.data);
+      try {
+        const results = await Axios.get(
+          "https://bootcamp-2022.devtest.ge/api/skills"
+        );
+        setSkills(results.data);
+        console.log(results.data);
+      } catch (error) {
+        console.log(error.message);
+        // if API did't respond, set data from local state
+        setSkills([
+          { id: 1, title: "HTML" },
+          { id: 2, title: "CSS" },
+          { id: 3, title: "PHP" },
+          { id: 4, title: "Laravel" },
+          { id: 5, title: "React.JS" },
+          { id: 6, title: "Vue.JS" },
+          { id: 7, title: "Svelte" },
+          { id: 8, title: "Angular" },
+        ]);
+      }
     };
 
     getResults();
