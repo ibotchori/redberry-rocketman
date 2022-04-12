@@ -2,13 +2,24 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import styles from "./PersonalInformation.module.css";
 import React, { useContext } from "react";
 import { UserContext } from "../../context/userContext";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  enteredName,
+  enteredLastName,
+  enteredEmail,
+  enteredPhone,
+} from "../../redux/personalInfoSlice";
 
 const PersonalInformation = () => {
-  // Global state
+  // Global state (Context)
   const [userInfo, setUserInfo] = useContext(UserContext);
 
   let regEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
   let regPhone = /^5[0-9]{8}$/g;
+
+  //  Global state (Redux)
+  const personalInfo = useSelector((state) => state.personalInfo);
+  const dispatch = useDispatch();
 
   return (
     <div className={styles.main}>
@@ -29,6 +40,10 @@ const PersonalInformation = () => {
                   setUserInfo({ ...userInfo, first_name: e.target.value })
                 }
                 value={userInfo.first_name}
+                /*  onChange={(e) => {
+                  dispatch(enteredName(e.target.value));
+                }}
+                value={personalInfo.firstName} */
               />
               {userInfo.showError && userInfo.first_name.length < 2 ? (
                 <ErrorMessage
@@ -52,6 +67,10 @@ const PersonalInformation = () => {
                   setUserInfo({ ...userInfo, last_name: e.target.value })
                 }
                 value={userInfo.last_name}
+                /* onChange={(e) => {
+                  dispatch(enteredLastName(e.target.value));
+                }}
+                value={personalInfo.lastName} */
               />
               {userInfo.showError && userInfo.last_name.length < 2 ? (
                 <ErrorMessage
@@ -75,6 +94,10 @@ const PersonalInformation = () => {
                   setUserInfo({ ...userInfo, email: e.target.value })
                 }
                 value={userInfo.email}
+                /*  onChange={(e) => {
+                  dispatch(enteredEmail(e.target.value));
+                }}
+                value={personalInfo.email} */
               />
               {userInfo?.showError &&
               regEmail.test(userInfo?.email) === false ? (
@@ -97,6 +120,10 @@ const PersonalInformation = () => {
                   setUserInfo({ ...userInfo, phone: e.target.value })
                 }
                 value={userInfo.phone}
+                /* onChange={(e) => {
+                  dispatch(enteredPhone(e.target.value));
+                }}
+                value={personalInfo.phone} */
               />
               {userInfo.showError &&
               regPhone.test(userInfo?.phone) === false ? (

@@ -5,12 +5,17 @@ import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { UserProvider } from "./context/userContext";
 
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
-      <Router>
-        <App />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </Provider>
     </UserProvider>
   </React.StrictMode>,
   document.getElementById("root")
