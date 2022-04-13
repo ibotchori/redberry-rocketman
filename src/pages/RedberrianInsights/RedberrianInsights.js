@@ -2,10 +2,22 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import styles from "./Redberrian.module.css";
 import { useContext } from "react";
 import { UserContext } from "../../context/userContext";
+/* Redux */
+import { useSelector, useDispatch } from "react-redux";
+// actions
+import {
+  setDevTalk,
+  setDevTalkTopic,
+  setSomethingSpecial,
+} from "../../redux/reducers/redberrianSlice";
 
 const RedberrianInsights = () => {
-  // Global state
+  // Global state (Context)
   const [userInfo, setUserInfo] = useContext(UserContext);
+
+  //  Global state (Redux)
+  const redberrianFromRedux = useSelector((state) => state.redberrian);
+  const dispatch = useDispatch();
 
   return (
     <div className={styles.main}>
@@ -22,12 +34,14 @@ const RedberrianInsights = () => {
                 name="covid"
                 value={true}
                 checked={userInfo.will_organize_devtalk === true ? true : false}
-                onChange={(e) =>
+                onChange={(e) => {
                   setUserInfo({
                     ...userInfo,
                     will_organize_devtalk: JSON.parse(e.currentTarget.value),
-                  })
-                }
+                  });
+                  // save to redux
+                  dispatch(setDevTalk(JSON.parse(e.currentTarget.value)));
+                }}
               />
               &nbsp; <label htmlFor="yes">Yes</label>
               <br />
@@ -40,12 +54,14 @@ const RedberrianInsights = () => {
                   userInfo.will_organize_devtalk === false ? true : false
                 }
                 value={false}
-                onChange={(e) =>
+                onChange={(e) => {
                   setUserInfo({
                     ...userInfo,
                     will_organize_devtalk: JSON.parse(e.currentTarget.value),
-                  })
-                }
+                  });
+                  // save to redux
+                  dispatch(setDevTalk(JSON.parse(e.currentTarget.value)));
+                }}
               />
               &nbsp; <label htmlFor="no">No</label>
             </div>
@@ -68,9 +84,11 @@ const RedberrianInsights = () => {
                   rows="4"
                   cols="50"
                   placeholder="I would..."
-                  onChange={(e) =>
-                    setUserInfo({ ...userInfo, devtalk_topic: e.target.value })
-                  }
+                  onChange={(e) => {
+                    setUserInfo({ ...userInfo, devtalk_topic: e.target.value });
+                    // save to redux
+                    dispatch(setDevTalkTopic(e.currentTarget.value));
+                  }}
                   value={userInfo.devtalk_topic}
                 ></textarea>
                 {userInfo.showRedberrianError &&
@@ -98,12 +116,14 @@ const RedberrianInsights = () => {
                 rows="4"
                 cols="50"
                 placeholder="I..."
-                onChange={(e) =>
+                onChange={(e) => {
                   setUserInfo({
                     ...userInfo,
                     something_special: e.target.value,
-                  })
-                }
+                  });
+                  // save to redux
+                  dispatch(setSomethingSpecial(e.currentTarget.value));
+                }}
                 value={userInfo.something_special}
               ></textarea>
             </div>

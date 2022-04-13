@@ -15,7 +15,7 @@ import {
 } from "../../redux/reducers/covidSlice";
 
 const Covid = () => {
-  // Global state
+  // Global state (Context)
   const [userInfo, setUserInfo] = useContext(UserContext);
 
   //  Global state (Redux)
