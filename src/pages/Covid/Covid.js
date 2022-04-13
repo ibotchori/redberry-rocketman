@@ -3,9 +3,24 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import styles from "./Covid.module.css";
 import { UserContext } from "../../context/userContext";
 
+/* Redux */
+import { useSelector, useDispatch } from "react-redux";
+// action
+import {
+  setWorkPreference,
+  setCovid,
+  setCovidAt,
+  setVaccinated,
+  setVaccinatedAt,
+} from "../../redux/covidSlice";
+
 const Covid = () => {
   // Global state
   const [userInfo, setUserInfo] = useContext(UserContext);
+
+  //  Global state (Redux)
+  const covidFromRedux = useSelector((state) => state.covid);
+  const dispatch = useDispatch();
 
   return (
     <div className={styles.main}>
@@ -24,12 +39,14 @@ const Covid = () => {
                   userInfo.work_preference === "from_office" ? true : false
                 }
                 value={"from_office"}
-                onChange={(e) =>
+                onChange={(e) => {
                   setUserInfo({
                     ...userInfo,
                     work_preference: e.currentTarget.value,
-                  })
-                }
+                  });
+                  // save to redux
+                  dispatch(setWorkPreference(e.currentTarget.value));
+                }}
               />
               &nbsp; <label htmlFor="sairme">From Sairme Office</label>
               <br />
@@ -42,12 +59,14 @@ const Covid = () => {
                   userInfo.work_preference === "from_home" ? true : false
                 }
                 value={"from_home"}
-                onChange={(e) =>
+                onChange={(e) => {
                   setUserInfo({
                     ...userInfo,
                     work_preference: e.currentTarget.value,
-                  })
-                }
+                  });
+                  // save to redux
+                  dispatch(setWorkPreference(e.currentTarget.value));
+                }}
               />
               &nbsp; <label htmlFor="home">From Home</label>
               <br />
@@ -58,12 +77,14 @@ const Covid = () => {
                 name="hybrid"
                 checked={userInfo.work_preference === "hybrid" ? true : false}
                 value={"hybrid"}
-                onChange={(e) =>
+                onChange={(e) => {
                   setUserInfo({
                     ...userInfo,
                     work_preference: e.currentTarget.value,
-                  })
-                }
+                  });
+                  // save to redux
+                  dispatch(setWorkPreference(e.currentTarget.value));
+                }}
               />
               &nbsp; <label htmlFor="hybrid">Hybrid</label>
             </div>
@@ -81,12 +102,14 @@ const Covid = () => {
                 name="covidContact"
                 checked={userInfo.had_covid === true ? true : false}
                 value={true}
-                onChange={(e) =>
+                onChange={(e) => {
                   setUserInfo({
                     ...userInfo,
                     had_covid: JSON.parse(e.currentTarget.value),
-                  })
-                }
+                  });
+                  // save to redux
+                  dispatch(setCovid(JSON.parse(e.currentTarget.value)));
+                }}
               />
               &nbsp; <label htmlFor="yes">Yes</label>
               <br />
@@ -97,12 +120,14 @@ const Covid = () => {
                 name="covidContact"
                 checked={userInfo.had_covid === false ? true : false}
                 value={false}
-                onChange={(e) =>
+                onChange={(e) => {
                   setUserInfo({
                     ...userInfo,
                     had_covid: JSON.parse(e.currentTarget.value),
-                  })
-                }
+                  });
+                  // save to redux
+                  dispatch(setCovid(JSON.parse(e.currentTarget.value)));
+                }}
               />
               &nbsp; <label htmlFor="no">No</label>
             </div>
@@ -122,12 +147,14 @@ const Covid = () => {
                   id="date"
                   name="covidDate"
                   value={userInfo.had_covid_at}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     setUserInfo({
                       ...userInfo,
                       had_covid_at: e.currentTarget.value,
-                    })
-                  }
+                    });
+                    // save to redux
+                    dispatch(setCovidAt(e.currentTarget.value));
+                  }}
                 />
                 {userInfo.showCovidError && userInfo.had_covid_at === "" ? (
                   <ErrorMessage text={"* Please select date"} />
@@ -158,12 +185,14 @@ const Covid = () => {
                 name="vaccinated"
                 checked={userInfo.vaccinated === true ? true : false}
                 value={true}
-                onChange={(e) =>
+                onChange={(e) => {
                   setUserInfo({
                     ...userInfo,
                     vaccinated: JSON.parse(e.currentTarget.value),
-                  })
-                }
+                  });
+                  // save to redux
+                  dispatch(setVaccinated(JSON.parse(e.currentTarget.value)));
+                }}
               />
               &nbsp; <label htmlFor="yes">Yes</label>
               <br />
@@ -174,12 +203,14 @@ const Covid = () => {
                 name="vaccinated"
                 checked={userInfo.vaccinated === false ? true : false}
                 value={false}
-                onChange={(e) =>
+                onChange={(e) => {
                   setUserInfo({
                     ...userInfo,
                     vaccinated: JSON.parse(e.currentTarget.value),
-                  })
-                }
+                  });
+                  // save to redux
+                  dispatch(setVaccinated(JSON.parse(e.currentTarget.value)));
+                }}
               />
               &nbsp; <label htmlFor="no">No</label>
             </div>
@@ -198,12 +229,14 @@ const Covid = () => {
                   id="date"
                   name="covidDate"
                   value={userInfo.vaccinated_at}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     setUserInfo({
                       ...userInfo,
                       vaccinated_at: e.currentTarget.value,
-                    })
-                  }
+                    });
+                    // save to redux
+                    dispatch(setVaccinatedAt(e.currentTarget.value));
+                  }}
                 />
                 {userInfo.showCovidError && userInfo.vaccinated_at === "" ? (
                   <ErrorMessage text={"* Please select date"} />
