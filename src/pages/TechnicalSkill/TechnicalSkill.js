@@ -6,9 +6,18 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { useAxios } from "../../CustomHooks/useAxios";
 import { useAxios2 } from "../../CustomHooks/useAxios2";
 
+/* Redux */
+import { useSelector, useDispatch } from "react-redux";
+// action
+import { addSkill, removeSkill } from "../../redux/skillSlice";
+
 const TechnicalSkill = () => {
-  // Global state
+  // Global state (Context)
   const [userInfo, setUserInfo] = useContext(UserContext);
+
+  //  Global state (Redux)
+  const skillsFromRedux = useSelector((state) => state.skill.skills);
+  const dispatch = useDispatch();
 
   // Local state
   const [expYear, setExpYear] = useState("");
@@ -55,7 +64,6 @@ const TechnicalSkill = () => {
           "https://bootcamp-2022.devtest.ge/api/skills"
         );
         setSkills(results.data);
-        console.log(results.data);
       } catch (error) {
         console.log(error.message);
         // if API did't respond, set data from local state
@@ -128,6 +136,8 @@ const TechnicalSkill = () => {
         ...userInfo,
         skills: [...userInfo.skills, oneWorkingExperience],
       });
+      // Save working experience to Redux Global state
+      dispatch(addSkill({ selectedSkillID, expYear, selectedSkill }));
     }
 
     // clear inputs & error messages
@@ -150,6 +160,8 @@ const TechnicalSkill = () => {
       ...userInfo,
       skills: userInfo.skills.filter((item) => item.id !== itemId),
     });
+    // Remove working experience from Redux Global state
+    dispatch(removeSkill({ itemId }));
   };
 
   return (
@@ -203,6 +215,8 @@ const TechnicalSkill = () => {
               </div>
 
               <div className={styles.skills}>
+                {/*  {skillsFromRedux.length !== 0 ? (
+                  skillsFromRedux.map((item) => ( */}
                 {userInfo.skills.length !== 0 ? (
                   userInfo.skills.map((item) => (
                     <div key={Math.random() * 11} className={styles.skill}>

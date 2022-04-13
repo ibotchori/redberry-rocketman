@@ -2,7 +2,9 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import styles from "./PersonalInformation.module.css";
 import React, { useContext } from "react";
 import { UserContext } from "../../context/userContext";
+/* Redux */
 import { useSelector, useDispatch } from "react-redux";
+// actions
 import {
   enteredName,
   enteredLastName,
