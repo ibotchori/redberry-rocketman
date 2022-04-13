@@ -10,7 +10,7 @@ import {
   setLastName,
   setEmail,
   setPhone,
-} from "../../redux/personalInfoSlice";
+} from "../../redux/reducers/personalInfoSlice";
 
 const PersonalInformation = () => {
   // Global state (Context)

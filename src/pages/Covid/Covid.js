@@ -12,7 +12,7 @@ import {
   setCovidAt,
   setVaccinated,
   setVaccinatedAt,
-} from "../../redux/covidSlice";
+} from "../../redux/reducers/covidSlice";
 
 const Covid = () => {
   // Global state
