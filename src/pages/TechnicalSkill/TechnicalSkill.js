@@ -8,7 +8,7 @@ import { useAxios2 } from "../../CustomHooks/useAxios2";
 
 /* Redux */
 import { useSelector, useDispatch } from "react-redux";
-// action
+// actions
 import { addSkill, removeSkill } from "../../redux/reducers/skillSlice";
 
 const TechnicalSkill = () => {

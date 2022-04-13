@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import covidReducer from "./reducers/covidSlice";
 import personalInfoReducer from "./reducers/personalInfoSlice";
-import redberrianSlice from "./reducers/redberrianSlice";
+import redberrianReducer from "./reducers/redberrianSlice";
 import skillReducer from "./reducers/skillSlice";
 
 export const store = configureStore({
@@ -9,6 +9,6 @@ export const store = configureStore({
     personalInfo: personalInfoReducer,
     skill: skillReducer,
     covid: covidReducer,
-    redberrian: redberrianSlice,
+    redberrian: redberrianReducer,
   },
 });

@@ -5,7 +5,7 @@ import { UserContext } from "../../context/userContext";
 
 /* Redux */
 import { useSelector, useDispatch } from "react-redux";
-// action
+// actions
 import {
   setWorkPreference,
   setCovid,
