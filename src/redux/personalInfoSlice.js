@@ -11,23 +11,23 @@ export const personalInfoSlice = createSlice({
   name: "personalInfo",
   initialState,
   reducers: {
-    enteredName: (state, action) => {
+    setFirstName: (state, action) => {
       state.firstName = action.payload;
     },
-    enteredLastName: (state, action) => {
+    setLastName: (state, action) => {
       state.lastName = action.payload;
     },
-    enteredEmail: (state, action) => {
+    setEmail: (state, action) => {
       state.email = action.payload;
     },
-    enteredPhone: (state, action) => {
+    setPhone: (state, action) => {
       state.phone = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { enteredName, enteredLastName, enteredEmail, enteredPhone } =
+export const { setFirstName, setLastName, setEmail, setPhone } =
   personalInfoSlice.actions;
 
 export default personalInfoSlice.reducer;

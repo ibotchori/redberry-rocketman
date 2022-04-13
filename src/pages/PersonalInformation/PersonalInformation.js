@@ -6,10 +6,10 @@ import { UserContext } from "../../context/userContext";
 import { useSelector, useDispatch } from "react-redux";
 // actions
 import {
-  enteredName,
-  enteredLastName,
-  enteredEmail,
-  enteredPhone,
+  setFirstName,
+  setLastName,
+  setEmail,
+  setPhone,
 } from "../../redux/personalInfoSlice";
 
 const PersonalInformation = () => {
@@ -20,7 +20,7 @@ const PersonalInformation = () => {
   let regPhone = /^5[0-9]{8}$/g;
 
   //  Global state (Redux)
-  const personalInfo = useSelector((state) => state.personalInfo);
+  const personalInfoFromRedux = useSelector((state) => state.personalInfo);
   const dispatch = useDispatch();
 
   return (
@@ -38,14 +38,12 @@ const PersonalInformation = () => {
                 id="fname"
                 name="firstName"
                 placeholder="First Name"
-                onChange={(e) =>
-                  setUserInfo({ ...userInfo, first_name: e.target.value })
-                }
-                value={userInfo.first_name}
-                /*  onChange={(e) => {
-                  dispatch(enteredName(e.target.value));
+                onChange={(e) => {
+                  setUserInfo({ ...userInfo, first_name: e.target.value });
+                  // save to redux
+                  dispatch(setFirstName(e.target.value));
                 }}
-                value={personalInfo.firstName} */
+                value={userInfo.first_name}
               />
               {userInfo.showError && userInfo.first_name.length < 2 ? (
                 <ErrorMessage
@@ -65,14 +63,12 @@ const PersonalInformation = () => {
                 id="lname"
                 name="lstName"
                 placeholder="Last Name"
-                onChange={(e) =>
-                  setUserInfo({ ...userInfo, last_name: e.target.value })
-                }
-                value={userInfo.last_name}
-                /* onChange={(e) => {
-                  dispatch(enteredLastName(e.target.value));
+                onChange={(e) => {
+                  setUserInfo({ ...userInfo, last_name: e.target.value });
+                  // save to redux
+                  dispatch(setLastName(e.target.value));
                 }}
-                value={personalInfo.lastName} */
+                value={userInfo.last_name}
               />
               {userInfo.showError && userInfo.last_name.length < 2 ? (
                 <ErrorMessage
@@ -92,14 +88,12 @@ const PersonalInformation = () => {
                 id="email"
                 name="email"
                 placeholder="E mail"
-                onChange={(e) =>
-                  setUserInfo({ ...userInfo, email: e.target.value })
-                }
-                value={userInfo.email}
-                /*  onChange={(e) => {
-                  dispatch(enteredEmail(e.target.value));
+                onChange={(e) => {
+                  setUserInfo({ ...userInfo, email: e.target.value });
+                  // save to redux
+                  dispatch(setEmail(e.target.value));
                 }}
-                value={personalInfo.email} */
+                value={userInfo.email}
               />
               {userInfo?.showError &&
               regEmail.test(userInfo?.email) === false ? (
@@ -118,14 +112,12 @@ const PersonalInformation = () => {
                 id="number"
                 name="phone"
                 placeholder="5__ __ __ __"
-                onChange={(e) =>
-                  setUserInfo({ ...userInfo, phone: e.target.value })
-                }
-                value={userInfo.phone}
-                /* onChange={(e) => {
-                  dispatch(enteredPhone(e.target.value));
+                onChange={(e) => {
+                  setUserInfo({ ...userInfo, phone: e.target.value });
+                  // save to redux
+                  dispatch(setPhone(e.target.value));
                 }}
-                value={personalInfo.phone} */
+                value={userInfo.phone}
               />
               {userInfo.showError &&
               regPhone.test(userInfo?.phone) === false ? (
