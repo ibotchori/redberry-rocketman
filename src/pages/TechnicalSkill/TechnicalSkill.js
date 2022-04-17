@@ -9,7 +9,7 @@ import { useAxios2 } from "../../CustomHooks/useAxios2";
 /* Redux */
 import { useSelector, useDispatch } from "react-redux";
 // actions
-import { addSkill, removeSkill } from "../../redux/reducers/skillSlice";
+import { addSkill, removeSkill } from "../../features/skill/skillSlice";
 
 const TechnicalSkill = () => {
   // Global state (Context)

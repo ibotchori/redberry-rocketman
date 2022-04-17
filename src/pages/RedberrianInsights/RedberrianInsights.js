@@ -9,7 +9,7 @@ import {
   setDevTalk,
   setDevTalkTopic,
   setSomethingSpecial,
-} from "../../redux/reducers/redberrianSlice";
+} from "../../features/redberrian/redberrianSlice";
 
 const RedberrianInsights = () => {
   // Global state (Context)
