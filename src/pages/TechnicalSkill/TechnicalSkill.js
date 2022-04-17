@@ -9,14 +9,20 @@ import { useAxios2 } from "../../CustomHooks/useAxios2";
 /* Redux */
 import { useSelector, useDispatch } from "react-redux";
 // actions
-import { addSkill, removeSkill } from "../../features/skill/skillSlice";
+import {
+  addSkill,
+  fetchSkills,
+  removeSkill,
+} from "../../features/skill/skillSlice";
 
 const TechnicalSkill = () => {
   // Global state (Context)
   const [userInfo, setUserInfo] = useContext(UserContext);
 
   //  Global state (Redux)
-  const skillsFromRedux = useSelector((state) => state.skill.skills);
+  const fetchedSkills = useSelector((state) => state.skill.fetchedSkills);
+  const addedSkillsFromRedux = useSelector((state) => state.skill.skills);
+
   const dispatch = useDispatch();
 
   // Local state
@@ -39,49 +45,10 @@ const TechnicalSkill = () => {
   //   getResults();
   // }, []);
 
-  // Get skills from API with custom hook
-  // const [skills, setSkills] = useState([]);
-  // const { response, error, loading } = useAxios({
-  //   method: "GET",
-  //   url: "https://bootcamp-2022.devtest.ge/api/skills",
-  // });
-
-  // useEffect(() => {
-  //   if (response !== null) {
-  //     setSkills(response);
-  //   }
-  // }, [response]);
-
-  // Declare second custom hook
-  const Axios = useAxios2();
-
-  //  Get skills from API with second custom hook
-  const [skills, setSkills] = useState([]);
+  //  Get skills from API with redux toolkit
   useEffect(() => {
-    const getResults = async () => {
-      try {
-        const results = await Axios.get(
-          "https://bootcamp-2022.devtest.ge/api/skills"
-        );
-        setSkills(results.data);
-      } catch (error) {
-        console.log(error.message);
-        // if API did't respond, set data from local state
-        setSkills([
-          { id: 1, title: "HTML" },
-          { id: 2, title: "CSS" },
-          { id: 3, title: "PHP" },
-          { id: 4, title: "Laravel" },
-          { id: 5, title: "React.JS" },
-          { id: 6, title: "Vue.JS" },
-          { id: 7, title: "Svelte" },
-          { id: 8, title: "Angular" },
-        ]);
-      }
-    };
-
-    getResults();
-  }, []);
+    dispatch(fetchSkills());
+  }, [dispatch]);
 
   // Clear error messages if input is not empty
   useEffect(() => {
@@ -95,7 +62,7 @@ const TechnicalSkill = () => {
 
   const addWorkingExperience = () => {
     // Extract Selected Skill ID
-    const selectedSkillID = skills?.find(
+    const selectedSkillID = fetchedSkills?.find(
       (item) => item.title === selectedSkill
     )?.id;
     let oneWorkingExperience = {
@@ -180,7 +147,7 @@ const TechnicalSkill = () => {
                 <option defaultValue="" hidden>
                   Skills
                 </option>
-                {skills?.map((item) => {
+                {fetchedSkills?.map((item) => {
                   return (
                     <option key={Math.random() * 9} value={item.title}>
                       {item.title}
