@@ -2,7 +2,8 @@
 
 import axios from "axios";
 
-const baseURL = "https://bootcamp-2022.devtest.ge/api";
+// const baseURL = "https://bootcamp-2022.devtest.ge/api";
+const baseURL = "https://rest-api-mongo.onrender.com";
 
 const fetchSkills = async () => {
   const results = await axios(`${baseURL}/skills`);
